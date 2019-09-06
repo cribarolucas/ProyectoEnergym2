@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{CAEB98C6-0FF6-4153-8FF8-F20FAC471D92}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GUI</RootNamespace>
+    <AssemblyName>GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>GUI.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>GUI.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DropDownListChosen">
+      <HintPath>..\packages\DropDownListChosen.1.0.1\lib\DropDownListChosen.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\css\bootstrap.css" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\css\bootstrap.min.css" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\js\bootstrap.js" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\js\npm.js" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap-grid.css" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap-grid.min.css" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap-reboot.css" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap.css" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap.min.css" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\js\bootstrap.bundle.js" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\js\bootstrap.bundle.min.js" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\js\bootstrap.js" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\js\bootstrap.min.js" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\chosen.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Estilos\chosen.css" />
+    <Content Include="Estilos\jquery-ui.min.css" />
+    <Content Include="Images\404.jpg" />
+    <Content Include="Images\Denegado.jpg" />
+    <Content Include="Images\Energym - Logo.jpg" />
+    <Content Include="Images\Energym - Titulo.jpg" />
+    <Content Include="Images\FES - Título.jpg" />
+    <Content Include="Images\Mantenimiento.jpg" />
+    <Content Include="Images\Thumbnail_404.jpg" />
+    <Content Include="Images\Thumbnail_404_copia.jpg" />
+    <Content Include="Images\Thumbnail_Denegado.jpg" />
+    <Content Include="Images\Thumbnail_Energym - Logo.jpg" />
+    <Content Include="Images\Thumbnail_FES - Logo.jpg" />
+    <Content Include="Images\Thumbnail_Mantenimiento_copia.jpg" />
+    <Content Include="Scripts\Canvas\canvasjs.min.js" />
+    <Content Include="Scripts\Canvas\jquery.canvasjs.min.js" />
+    <Content Include="Scripts\GoJS\go-debug.js" />
+    <Content Include="Scripts\GoJS\go.js" />
+    <Content Include="Scripts\GoJS\goSamples.js" />
+    <Content Include="Scripts\GoJS\jquery-ui.min.js" />
+    <Content Include="Scripts\GoJS\jquery.min.js" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\wells.less" />
+    <Content Include="Content\bootstrap\variables.less" />
+    <Content Include="Content\bootstrap\utilities.less" />
+    <Content Include="Content\bootstrap\type.less" />
+    <Content Include="Content\bootstrap\tooltip.less" />
+    <Content Include="Content\bootstrap\thumbnails.less" />
+    <Content Include="Content\bootstrap\theme.less" />
+    <Content Include="Content\bootstrap\tables.less" />
+    <Content Include="Content\bootstrap\scaffolding.less" />
+    <Content Include="Content\bootstrap\responsive-utilities.less" />
+    <Content Include="Content\bootstrap\responsive-embed.less" />
+    <Content Include="Content\bootstrap\progress-bars.less" />
+    <Content Include="Content\bootstrap\print.less" />
+    <Content Include="Content\bootstrap\popovers.less" />
+    <Content Include="Content\bootstrap\panels.less" />
+    <Content Include="Content\bootstrap\pagination.less" />
+    <Content Include="Content\bootstrap\pager.less" />
+    <Content Include="Content\bootstrap\normalize.less" />
+    <Content Include="Content\bootstrap\navs.less" />
+    <Content Include="Content\bootstrap\navbar.less" />
+    <Content Include="Content\bootstrap\modals.less" />
+    <Content Include="Content\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="Content\bootstrap\mixins\text-overflow.less" />
+    <Content Include="Content\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="Content\bootstrap\mixins\table-row.less" />
+    <Content Include="Content\bootstrap\mixins\tab-focus.less" />
+    <Content Include="Content\bootstrap\mixins\size.less" />
+    <Content Include="Content\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="Content\bootstrap\mixins\resize.less" />
+    <Content Include="Content\bootstrap\mixins\reset-text.less" />
+    <Content Include="Content\bootstrap\mixins\reset-filter.less" />
+    <Content Include="Content\bootstrap\mixins\progress-bar.less" />
+    <Content Include="Content\bootstrap\mixins\panels.less" />
+    <Content Include="Content\bootstrap\mixins\pagination.less" />
+    <Content Include="Content\bootstrap\mixins\opacity.less" />
+    <Content Include="Content\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="Content\bootstrap\mixins\nav-divider.less" />
+    <Content Include="Content\bootstrap\mixins\list-group.less" />
+    <Content Include="Content\bootstrap\mixins\labels.less" />
+    <Content Include="Content\bootstrap\mixins\image.less" />
+    <Content Include="Content\bootstrap\mixins\hide-text.less" />
+    <Content Include="Content\bootstrap\mixins\grid-framework.less" />
+    <Content Include="Content\bootstrap\mixins\grid.less" />
+    <Content Include="Content\bootstrap\mixins\gradients.less" />
+    <Content Include="Content\bootstrap\mixins\forms.less" />
+    <Content Include="Content\bootstrap\mixins\clearfix.less" />
+    <Content Include="Content\bootstrap\mixins\center-block.less" />
+    <Content Include="Content\bootstrap\mixins\buttons.less" />
+    <Content Include="Content\bootstrap\mixins\border-radius.less" />
+    <Content Include="Content\bootstrap\mixins\background-variant.less" />
+    <Content Include="Content\bootstrap\mixins\alerts.less" />
+    <Content Include="Content\bootstrap\mixins.less" />
+    <Content Include="Content\bootstrap\media.less" />
+    <Content Include="Content\bootstrap\list-group.less" />
+    <Content Include="Content\bootstrap\labels.less" />
+    <Content Include="Content\bootstrap\jumbotron.less" />
+    <Content Include="Content\bootstrap\input-groups.less" />
+    <Content Include="Content\bootstrap\grid.less" />
+    <Content Include="Content\bootstrap\glyphicons.less" />
+    <Content Include="Content\bootstrap\forms.less" />
+    <Content Include="Content\bootstrap\dropdowns.less" />
+    <Content Include="Content\bootstrap\component-animations.less" />
+    <Content Include="Content\bootstrap\code.less" />
+    <Content Include="Content\bootstrap\close.less" />
+    <Content Include="Content\bootstrap\carousel.less" />
+    <Content Include="Content\bootstrap\buttons.less" />
+    <Content Include="Content\bootstrap\button-groups.less" />
+    <Content Include="Content\bootstrap\breadcrumbs.less" />
+    <Content Include="Content\bootstrap\bootstrap.less" />
+    <Content Include="Content\bootstrap\badges.less" />
+    <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <Content Include="Content\_bootstrap-datetimepicker.less" />
+    <None Include="Scripts\JQuery\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\JQuery\chosen.jquery.js" />
+    <Content Include="Scripts\JQuery\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\JQuery\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\JQuery\jquery-3.2.1.js" />
+    <Content Include="Scripts\JQuery\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\JQuery\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\JQuery\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\Propios\BackupRestore.js" />
+    <Content Include="Scripts\Propios\Bitacora.js" />
+    <Content Include="Scripts\Propios\Clientes.js" />
+    <Content Include="Scripts\Propios\Contacto.js" />
+    <Content Include="Scripts\Propios\Idiomas.js" />
+    <Content Include="Scripts\Propios\Inicio.js" />
+    <Content Include="Scripts\Propios\Permisos.js" />
+    <Content Include="Scripts\Propios\Usuarios.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\FES - Logo.jpg" />
+    <Content Include="Sites\Inicio.aspx" />
+    <Content Include="Sites\Mantenimiento.aspx" />
+    <Content Include="Sites\Negocio\Clientes.aspx" />
+    <Content Include="Sites\NotFound.aspx" />
+    <Content Include="Sites\QuienesSomos.aspx" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\Propios\Login.js" />
+    <Content Include="Scripts\Propios\MasterPage.js" />
+    <Content Include="Sites\Sistema\Backup_Restore.aspx" />
+    <Content Include="Sites\Sistema\Bitacora.aspx" />
+    <Content Include="Sites\Sistema\Idiomas.aspx" />
+    <Content Include="Sites\Sistema\Integridad.aspx" />
+    <Content Include="Sites\Sistema\Login.aspx" />
+    <Content Include="Sites\Sistema\Permisos.aspx" />
+    <Content Include="Sites\Unauthorized.aspx" />
+    <Content Include="Sites\Sistema\Usuarios.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Inicio.aspx.designer.vb">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Inicio.aspx.vb">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Mantenimiento.aspx.designer.vb">
+      <DependentUpon>Mantenimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Mantenimiento.aspx.vb">
+      <DependentUpon>Mantenimiento.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\MasterPage.Master.designer.vb">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\MasterPage.Master.vb">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Sites\Negocio\Clientes.aspx.designer.vb">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Negocio\Clientes.aspx.vb">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\NotFound.aspx.designer.vb">
+      <DependentUpon>NotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\NotFound.aspx.vb">
+      <DependentUpon>NotFound.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\QuienesSomos.aspx.designer.vb">
+      <DependentUpon>QuienesSomos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\QuienesSomos.aspx.vb">
+      <DependentUpon>QuienesSomos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Sistema\Backup_Restore.aspx.designer.vb">
+      <DependentUpon>Backup_Restore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Sistema\Backup_Restore.aspx.vb">
+      <DependentUpon>Backup_Restore.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Sistema\Bitacora.aspx.designer.vb">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Sistema\Bitacora.aspx.vb">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Sistema\Idiomas.aspx.designer.vb">
+      <DependentUpon>Idiomas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Sistema\Idiomas.aspx.vb">
+      <DependentUpon>Idiomas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Sistema\Integridad.aspx.designer.vb">
+      <DependentUpon>Integridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Sistema\Integridad.aspx.vb">
+      <DependentUpon>Integridad.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Sistema\Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Sistema\Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Sistema\Permisos.aspx.designer.vb">
+      <DependentUpon>Permisos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Sistema\Permisos.aspx.vb">
+      <DependentUpon>Permisos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Unauthorized.aspx.designer.vb">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Unauthorized.aspx.vb">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Sistema\Usuarios.aspx.designer.vb">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Sistema\Usuarios.aspx.vb">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sites\MasterPage.Master" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\css\bootstrap-theme.css.map" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\css\bootstrap.css.map" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\css\bootstrap.min.css.map" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Bootstrap\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap-grid.css.map" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap-reboot.css.map" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap.css.map" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\css\bootstrap.min.css.map" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\js\bootstrap.bundle.js.map" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\js\bootstrap.js.map" />
+    <Content Include="Bootstrap\bootstrap-4.0.0-beta.2-dist\js\bootstrap.min.js.map" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\PublishProfiles\Guido.pubxml" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Scripts\JQuery\jquery-3.2.1.min.map" />
+    <Content Include="Scripts\JQuery\jquery-3.2.1.slim.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BE\BE.vbproj">
+      <Project>{4bbd8dd5-21d9-431c-bc7f-3a947ef4142b}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLL\BLL.vbproj">
+      <Project>{418fb8bf-5cd6-4b7c-bd20-633f2685b984}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Seguridad\Seguridad.vbproj">
+      <Project>{4040c2eb-791f-4e17-ac70-14b61eeba8e9}</Project>
+      <Name>Seguridad</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3022</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2646/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

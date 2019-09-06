@@ -1,0 +1,91 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="MasterPage.master.vb" Inherits="GUI.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        .card {
+            border-color: transparent !important;
+        }
+
+        .btn-light {
+            background-color: transparent !important;
+            border-color: transparent !important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="../Bootstrap/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="../Bootstrap/bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../Bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <script src="../Scripts/JQuery/jquery-3.2.1.min.js"></script>
+    <script src="../Bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+</head>
+<body>
+    <script type="text/javascript" src="../../Scripts/Login.js"></script>
+
+    <form id="form1" runat="server">
+
+        <div class="container-fluid d-inline-block">
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <div class="pl-3 text-nowrap">
+                        <asp:Button ID="L_USER_CON" EnableTheming="false" Enabled="false" CssClass="btn btn-light" runat="server" />
+                    </div>
+                    <div class="pl-3 text-nowrap">
+                        <asp:Button ID="L_USU_LOG" EnableTheming="false" Enabled="false" CssClass="btn btn-light" runat="server" />
+                    </div>
+                    <div class="pl-3 text-nowrap">
+                        <asp:Button ID="L_REGISTRO" ClientIDMode="Static" Text="Registrarse" CssClass="btn btn-link" runat="server" />
+                    </div>
+                    <div class="pl-3 text-nowrap">
+                        <asp:Button ID="L_LOGIN" ClientIDMode="Static" Text="Iniciar sesión" CssClass="btn btn-link" runat="server" />
+                    </div>
+                    <div class="pl-3 text-nowrap">
+                        <asp:Button ID="L_LOGOUT" ClientIDMode="Static" Text="Cerrar sesión" CssClass="btn btn-link" runat="server" />
+                    </div>
+                    <div class="pl-3 text-nowrap">
+                        <asp:Button ID="L_IDIOMA" Text="Idioma" Enabled="false" CssClass="btn btn-light" runat="server"></asp:Button>
+                    </div>
+                    <div class="pl-3">
+                        <asp:DropDownList ID="ddlIdiomas" AutoPostBack="true" CssClass="form-control" Width="100%" Height="100%" runat="server"></asp:DropDownList>
+                    </div>
+                    <div class="pl-3 text-nowrap">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-12 text-center">
+            <asp:Image ID="Energym_Logo" CssClass="center-block" runat="server" ImageUrl="~/Images/Energym - Titulo.jpg" Width="30%" />
+        </div>
+        <div class="navbar navbar-default">
+            <div class="container-fluid">
+                <div>
+                    <asp:Menu ID="MenuPrincipal" runat="server" Orientation="Horizontal" RenderingMode="Table"
+                        IncludeStyleBlock="false" StaticMenuStyle-CssClass="nav navbar-nav"
+                        DynamicMenuStyle-CssClass="dropdown-menu">
+<DynamicMenuStyle CssClass="dropdown-menu"></DynamicMenuStyle>
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/Sites/Inicio.aspx" Text="Inicio" Value="M_INICIO"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Sites/QuienesSomos.aspx" Text="Quiénes somos" Value="M_QUIENES"></asp:MenuItem>
+                        </Items>
+                        <StaticHoverStyle BackColor="#666666" ForeColor="White" />
+                        <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+
+<StaticMenuStyle CssClass="nav navbar-nav"></StaticMenuStyle>
+
+                        <StaticSelectedStyle BackColor="#1C5E55" />
+                    </asp:Menu>
+                </div>
+            </div>
+        </div>
+        <asp:ContentPlaceHolder ID="CPH" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
