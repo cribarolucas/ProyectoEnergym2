@@ -3,6 +3,7 @@ Imports System.Configuration
 Imports System.Data
 Imports System.Data.SqlClient
 Friend Class DAL_Acceso
+    'probando
     Private _tx As SqlTransaction
     Private _cn As SqlConnection
     Private _strConn As String = Configuration.ConfigurationSettings.AppSettings.Get("ConexionBD").ToString
