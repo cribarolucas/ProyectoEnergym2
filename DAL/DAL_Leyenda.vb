@@ -172,13 +172,13 @@ Public Class DAL_Leyenda
 
             Next
 
-            If resultado Then
-                BE_Bitacora.FechaHora = DateTime.Now
-                BE_Bitacora.Usuario = _usuarioActual
-                BE_Bitacora.Descripcion = "Leyenda agregada exitosamente."
-                BE_Bitacora.EsError = False
-                DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
-            End If
+            'If resultado Then
+            '    BE_Bitacora.FechaHora = DateTime.Now
+            '    BE_Bitacora.Usuario = _usuarioActual
+            '    BE_Bitacora.Descripcion = "Leyenda agregada exitosamente."
+            '    BE_Bitacora.EsError = False
+            '    DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+            'End If
 
         Catch ex2 As ArgumentNullException
             BE_Bitacora.FechaHora = DateTime.Now
@@ -224,13 +224,13 @@ Public Class DAL_Leyenda
 
             resultado = (DAL_Acceso.Escribir("Idioma_Leyenda_Modificar", parametros) > 0)
 
-            If resultado Then
-                BE_Bitacora.FechaHora = DateTime.Now
-                BE_Bitacora.Usuario = _usuarioActual
-                BE_Bitacora.Descripcion = "Leyenda modificada exitosamente."
-                BE_Bitacora.EsError = False
-                DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
-            End If
+            'If resultado Then
+            '    BE_Bitacora.FechaHora = DateTime.Now
+            '    BE_Bitacora.Usuario = _usuarioActual
+            '    BE_Bitacora.Descripcion = "Leyenda modificada exitosamente."
+            '    BE_Bitacora.EsError = False
+            '    DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+            'End If
 
         Catch ex2 As ArgumentNullException
             BE_Bitacora.FechaHora = DateTime.Now
