@@ -163,13 +163,11 @@
     <Content Include="Images\Denegado.jpg" />
     <Content Include="Images\Energym - Logo.jpg" />
     <Content Include="Images\Energym - Titulo.jpg" />
-    <Content Include="Images\FES - Título.jpg" />
     <Content Include="Images\Mantenimiento.jpg" />
     <Content Include="Images\Thumbnail_404.jpg" />
     <Content Include="Images\Thumbnail_404_copia.jpg" />
     <Content Include="Images\Thumbnail_Denegado.jpg" />
     <Content Include="Images\Thumbnail_Energym - Logo.jpg" />
-    <Content Include="Images\Thumbnail_FES - Logo.jpg" />
     <Content Include="Images\Thumbnail_Mantenimiento_copia.jpg" />
     <Content Include="Scripts\Canvas\canvasjs.min.js" />
     <Content Include="Scripts\Canvas\jquery.canvasjs.min.js" />
@@ -273,7 +271,6 @@
     <Content Include="Scripts\Propios\Usuarios.js" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Images\FES - Logo.jpg" />
     <Content Include="Sites\Inicio.aspx" />
     <Content Include="Sites\Mantenimiento.aspx" />
     <Content Include="Sites\Negocio\Clientes.aspx" />
@@ -283,7 +280,6 @@
     <Content Include="Scripts\Propios\Login.js" />
     <Content Include="Scripts\Propios\MasterPage.js" />
     <Content Include="Sites\Sistema\Backup_Restore.aspx" />
-    <Content Include="Sites\Sistema\Bitacora.aspx" />
     <Content Include="Sites\Sistema\Idiomas.aspx" />
     <Content Include="Sites\Sistema\Integridad.aspx" />
     <Content Include="Sites\Sistema\Login.aspx" />
@@ -372,13 +368,6 @@
     <Compile Include="Sites\Sistema\Backup_Restore.aspx.vb">
       <DependentUpon>Backup_Restore.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Sites\Sistema\Bitacora.aspx.designer.vb">
-      <DependentUpon>Bitacora.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\Sistema\Bitacora.aspx.vb">
-      <DependentUpon>Bitacora.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\Sistema\Idiomas.aspx.designer.vb">
       <DependentUpon>Idiomas.aspx</DependentUpon>

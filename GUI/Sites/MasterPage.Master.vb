@@ -181,11 +181,7 @@
                 Next
             End If
         End If
-        If Not Session("EsCliente") Then
-            Me.QuitarItemProductos()
-        Else
-            Me.AgregarItemProductos()
-        End If
+
     End Sub
 
     Private Sub AddItem(ByVal texto As String, ByVal valor As String, ByVal url As String, ByRef menu As MenuItem, Optional ByVal queryString As String = Nothing)
@@ -196,20 +192,7 @@
         menu.ChildItems.Add(m)
     End Sub
 
-    Private Sub QuitarItemProductos()
-        Dim item As MenuItem = MenuPrincipal.FindItem("M_PROD")
-        If Not IsNothing(item) Then
-            MenuPrincipal.Items.Remove(item)
-        End If
-    End Sub
-    Private Sub AgregarItemProductos()
-        Dim item As MenuItem = MenuPrincipal.FindItem("M_PROD")
-        If IsNothing(item) Then
-            Dim m As MenuItem = New MenuItem("Productos", "M_PROD")
-            m.NavigateUrl = "~/Sites/Productos.aspx"
-            MenuPrincipal.Items.Add(m)
-        End If
-    End Sub
+
 
     Protected Sub L_LOGOUT_Click(sender As Object, e As EventArgs) Handles L_LOGOUT.Click
         Session.Remove("Usuario_Conectado")
@@ -234,6 +217,7 @@
             L_USU_LOG.Visible = True
         End If
     End Sub
+
     Private Sub EstablecerIdiomaActual()
         Dim idioma As BE.BE_Idioma = New BE.BE_Idioma
         Dim idiomas As List(Of BE.BE_Idioma) = Application("Idiomas")
@@ -252,6 +236,7 @@
         End If
 
     End Sub
+
     Public Sub VerificarAutorizacion(ByVal permiso As BE.BE_Permiso)
         Dim usuario As BE.BE_Usuario = Session("Usuario_Conectado")
         Dim tienePermiso As Boolean
@@ -265,6 +250,7 @@
             Response.Redirect("~/Sites/Unauthorized.aspx")
         End If
     End Sub
+
     Public Sub EstablecerIdiomaDDL()
         If IsNothing(Session("Idioma_Actual")) Then
             ddlIdiomas.SelectedValue = "es-AR" 'Idioma por defecto
