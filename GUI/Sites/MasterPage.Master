@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="col-sm-12 col-lg-12 text-center">
-            <asp:Image ID="Energym_Logo" CssClass="center-block" runat="server" ImageUrl="~/Images/Energym - Titulo.jpg" Width="30%" />
+            <asp:Image ID="Energym_Logo" CssClass="center-block" runat="server" ImageUrl="~/Images/Energym - Titulo.jpg" Width="18%" Height="80px" />
         </div>
         <div class="navbar navbar-default">
             <div class="container-fluid">
