@@ -280,6 +280,7 @@
     <Content Include="Scripts\Propios\Login.js" />
     <Content Include="Scripts\Propios\MasterPage.js" />
     <Content Include="Sites\Sistema\Backup_Restore.aspx" />
+    <Content Include="Sites\Sistema\Bitacora.aspx" />
     <Content Include="Sites\Sistema\Idiomas.aspx" />
     <Content Include="Sites\Sistema\Integridad.aspx" />
     <Content Include="Sites\Sistema\Login.aspx" />
@@ -368,6 +369,13 @@
     <Compile Include="Sites\Sistema\Backup_Restore.aspx.vb">
       <DependentUpon>Backup_Restore.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Sistema\Bitacora.aspx.designer.vb">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Sistema\Bitacora.aspx.vb">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\Sistema\Idiomas.aspx.designer.vb">
       <DependentUpon>Idiomas.aspx</DependentUpon>
