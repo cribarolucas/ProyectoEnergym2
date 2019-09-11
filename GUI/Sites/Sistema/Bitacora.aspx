@@ -1,6 +1,25 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Bitacora.aspx.vb" Inherits="GUI.Bitacora" %>
-
+ 
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
+    <style>
+    .ui-icon.ui-icon-circle-triangle-w{
+        
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #343a40;
+
+    }
+    .ui-icon.ui-icon-circle-triangle-e{
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  
+  border-left: 10px solid #343a40;
+    }
+</style> 
     <link rel="stylesheet" href="../../Estilos/jquery-ui.min.css" />
     <script src="../../Scripts/JQuery/jquery-3.2.1.js"></script>
     <script src="../../Scripts/JQuery/jquery-ui-1.12.1.min.js"></script>
