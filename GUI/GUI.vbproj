@@ -274,6 +274,8 @@
     <Content Include="Sites\Inicio.aspx" />
     <Content Include="Sites\Mantenimiento.aspx" />
     <Content Include="Sites\Negocio\Clientes.aspx" />
+    <Content Include="Sites\Negocio\Productos_ABM.aspx" />
+    <Content Include="Sites\Negocio\Stock.aspx" />
     <Content Include="Sites\NotFound.aspx" />
     <Content Include="Sites\QuienesSomos.aspx" />
     <Content Include="packages.config" />
@@ -347,6 +349,20 @@
     </Compile>
     <Compile Include="Sites\Negocio\Clientes.aspx.vb">
       <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Negocio\Productos_ABM.aspx.designer.vb">
+      <DependentUpon>Productos_ABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Negocio\Productos_ABM.aspx.vb">
+      <DependentUpon>Productos_ABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Negocio\Stock.aspx.designer.vb">
+      <DependentUpon>Stock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Negocio\Stock.aspx.vb">
+      <DependentUpon>Stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\NotFound.aspx.designer.vb">
