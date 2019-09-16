@@ -267,6 +267,7 @@
     <Content Include="Scripts\Propios\Contacto.js" />
     <Content Include="Scripts\Propios\Idiomas.js" />
     <Content Include="Scripts\Propios\Inicio.js" />
+    <Content Include="Scripts\Propios\Ordenes_Produccion.js" />
     <Content Include="Scripts\Propios\Permisos.js" />
     <Content Include="Scripts\Propios\Productos.js" />
     <Content Include="Scripts\Propios\Stock.js" />
@@ -276,6 +277,7 @@
     <Content Include="Sites\Inicio.aspx" />
     <Content Include="Sites\Mantenimiento.aspx" />
     <Content Include="Sites\Negocio\Clientes.aspx" />
+    <Content Include="Sites\Negocio\Ordenes_Produccion.aspx" />
     <Content Include="Sites\Negocio\Productos_ABM.aspx" />
     <Content Include="Sites\Negocio\Stock.aspx" />
     <Content Include="Sites\NotFound.aspx" />
@@ -351,6 +353,13 @@
     </Compile>
     <Compile Include="Sites\Negocio\Clientes.aspx.vb">
       <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Negocio\Ordenes_Produccion.aspx.designer.vb">
+      <DependentUpon>Ordenes_Produccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Negocio\Ordenes_Produccion.aspx.vb">
+      <DependentUpon>Ordenes_Produccion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\Negocio\Productos_ABM.aspx.designer.vb">

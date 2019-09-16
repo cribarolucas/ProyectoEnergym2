@@ -122,16 +122,16 @@ Public Class Stock
         BE_OrdenProduccion.FechaInicio = Date.Now
         BE_OrdenProduccion.Detalles.Add(BE_OrdenProduccionDetalle)
 
-        'If BLL_OrdenProduccion.GenerarOrdenProduccion(BE_OrdenProduccion) Then
-        '    Me.LimpiarCampos()
-        '    'La orden de producción ha sido creada.
-        '    lblError.Text = _segIdioma.TraducirControl("MS_026", _usuarioConectado.Idioma)
-        '    lblError.ForeColor = Color.Green
-        'Else
-        '    'Error: la orden de producción no ha sido creada.
-        '    lblError.Text = _segIdioma.TraducirControl("ME_076", _usuarioConectado.Idioma)
-        '    lblError.ForeColor = Color.Red
-        'End If
+        If BLL_OrdenProduccion.GenerarOrdenProduccion(BE_OrdenProduccion) Then
+            Me.LimpiarCampos()
+            'La orden de producción ha sido creada.
+            lblError.Text = _segIdioma.TraducirControl("MS_026", _usuarioConectado.Idioma)
+            lblError.ForeColor = Color.Green
+        Else
+            'Error: la orden de producción no ha sido creada.
+            lblError.Text = _segIdioma.TraducirControl("ME_076", _usuarioConectado.Idioma)
+            lblError.ForeColor = Color.Red
+        End If
 
     End Sub
 
