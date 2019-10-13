@@ -1,8 +1,12 @@
-﻿Imports System.Web.Script.Serialization
-Public Class Backup_Restore
+﻿Imports System.IO
+Imports System.Data
+Imports System.Web.Script.Serialization
+Imports System.Configuration
+Public Class Cambiar_Contraseña
     Inherits System.Web.UI.Page
+    Private _segIdioma As Seguridad.SEG_Idioma = New Seguridad.SEG_Idioma
     Private _usuarioConectado As BE.BE_Usuario
-    Private SEG_Idioma As Seguridad.SEG_Idioma = New Seguridad.SEG_Idioma
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         _usuarioConectado = Session("Usuario_Conectado")
         If Not IsPostBack Then
@@ -10,53 +14,14 @@ Public Class Backup_Restore
             hfLeyendasIdiomaActual.Value = jss.Serialize(DirectCast(Session("Idioma_Actual"), BE.BE_Idioma).Leyendas)
             Dim mp As MasterPage = Me.Master
             Dim BE_Permiso As BE.BE_Permiso = New BE.BE_Permiso
-            BE_Permiso.ID = 4 'Le paso el código del permiso que corresponde al backup y restore
+            BE_Permiso.ID = 15 'Le paso el código del permiso que corresponde al cambio de contraseña
             mp.VerificarAutorizacion(BE_Permiso)
             If Not IsNothing(_usuarioConectado) Then
                 mp.AgregarItemsMenuPorPermiso(_usuarioConectado.Perfil)
-                Me.BindData()
                 mp.Traducir(mp)
                 mp.Traducir(Me)
             End If
         End If
-    End Sub
-
-    Protected Sub B_ACEPTAR_Click(sender As Object, e As EventArgs) Handles B_ACEPTAR.Click
-        Dim SEG_BackupRestore As Seguridad.SEG_BackupRestore = New Seguridad.SEG_BackupRestore
-        Dim SEG_GestorIntegridad As Seguridad.SEG_GestorIntegridad = New Seguridad.SEG_GestorIntegridad
-        If RB_BACKUP.Checked Then
-            _usuarioConectado = Session("Usuario_Conectado")
-            If SEG_GestorIntegridad.VerificarIntegridad Then
-                If SEG_BackupRestore.RealizarBackup(_usuarioConectado) Then
-                    lblError.Text = SEG_Idioma.TraducirControl("MS_012", _usuarioConectado.Idioma)
-                    lblError.ForeColor = Drawing.Color.Green
-                    Me.BindData()
-                Else
-                    lblError.Text = SEG_Idioma.TraducirControl("ME_027", _usuarioConectado.Idioma)
-                    lblError.ForeColor = Drawing.Color.Red
-                End If
-            Else
-                lblError.Text = SEG_Idioma.TraducirControl("ME_027", _usuarioConectado.Idioma)
-                lblError.ForeColor = Drawing.Color.Red
-            End If
-        Else
-                If Not IsNothing(lbBackups.SelectedItem) Then
-                If SEG_BackupRestore.RealizarRestore(DirectCast(lbBackups.SelectedValue, String).ToString) Then
-                    lblError.Text = SEG_Idioma.TraducirControl("MS_013", _usuarioConectado.Idioma)
-                    lblError.ForeColor = Drawing.Color.Green
-                Else
-                    lblError.Text = SEG_Idioma.TraducirControl("ME_028", _usuarioConectado.Idioma)
-                    lblError.ForeColor = Drawing.Color.Red
-                End If
-            End If
-        End If
-    End Sub
-
-    Private Sub BindData()
-        Dim SEG_BackupRestore As Seguridad.SEG_BackupRestore = New Seguridad.SEG_BackupRestore
-        lbBackups.DataSource = Nothing
-        lbBackups.DataSource = SEG_BackupRestore.ListarBackups()
-        lbBackups.DataBind()
     End Sub
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
         Dim mp As MasterPage = Me.Master
@@ -91,6 +56,28 @@ Public Class Backup_Restore
             mp.Traducir(Me)
         End If
 
+    End Sub
+
+    Protected Sub B_ACEPTAR_Click(sender As Object, e As EventArgs) Handles B_ACEPTAR.Click
+        Dim BE_Usuario As BE.BE_Usuario = New BE.BE_Usuario
+        Dim SEG_Usuario As Seguridad.SEG_Usuario = New Seguridad.SEG_Usuario
+        Dim SEG_GestorCifrado As Seguridad.SEG_GestorCifrado = New Seguridad.SEG_GestorCifrado
+
+        BE_Usuario.Clave = txtClave.Text
+        If SEG_Usuario.VerificarContraseña(BE_Usuario, _usuarioConectado) Then
+            BE_Usuario = _usuarioConectado
+            BE_Usuario.Clave = SEG_GestorCifrado.GetHashMD5(txtClaveNew.Text)
+            If SEG_Usuario.ActualizarContraseña(BE_Usuario) Then
+                lblError.ForeColor = Drawing.Color.Green
+                lblError.Text = _segIdioma.TraducirControl("MS_018", _usuarioConectado.Idioma)
+            Else
+                lblError.ForeColor = Drawing.Color.Red
+                lblError.Text = _segIdioma.TraducirControl("ME_057", _usuarioConectado.Idioma)
+            End If
+        Else
+            lblError.ForeColor = Drawing.Color.Red
+            lblError.Text = _segIdioma.TraducirControl("ME_058", _usuarioConectado.Idioma)
+        End If
     End Sub
 
 End Class

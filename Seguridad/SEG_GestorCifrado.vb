@@ -44,7 +44,7 @@ Public Class SEG_GestorCifrado
     '/// <param name="useHashing">true if the key must be hashed (more secure)</param>
     '/// <returns>cypher text</returns>
     Public Function CypherTripleDES(ByVal toEncrypt As String, ByVal key As String, ByVal useHashing As Boolean) As String
-
+        Dim r As String
         Dim keyArray As Byte()
         Dim toEncryptArray As Byte() = UTF8Encoding.UTF8.GetBytes(toEncrypt)
 
@@ -78,6 +78,7 @@ Public Class SEG_GestorCifrado
         '//Release resources held by TripleDes Encryptor
         tdes.Clear()
         '//Return the encrypted data into unreadable string format
+        r = Convert.ToBase64String(resultArray, 0, resultArray.Length)
         Return Convert.ToBase64String(resultArray, 0, resultArray.Length)
 
     End Function

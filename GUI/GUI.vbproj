@@ -274,13 +274,17 @@
     <Content Include="Scripts\Propios\Usuarios.js" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Sites\Cliente\Cambiar_Contraseña.aspx" />
+    <Content Include="Sites\Contacto.aspx" />
     <Content Include="Sites\Inicio.aspx" />
     <Content Include="Sites\Mantenimiento.aspx" />
     <Content Include="Sites\Negocio\Clientes.aspx" />
     <Content Include="Sites\Negocio\Ordenes_Produccion.aspx" />
     <Content Include="Sites\Negocio\Productos_ABM.aspx" />
+    <Content Include="Sites\Negocio\Producto_Detalle.aspx" />
     <Content Include="Sites\Negocio\Stock.aspx" />
     <Content Include="Sites\NotFound.aspx" />
+    <Content Include="Sites\Productos.aspx" />
     <Content Include="Sites\QuienesSomos.aspx" />
     <Content Include="packages.config" />
     <Content Include="Scripts\Propios\Login.js" />
@@ -307,6 +311,20 @@
     </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Cliente\Cambiar_Contraseña.aspx.designer.vb">
+      <DependentUpon>Cambiar_Contraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Cliente\Cambiar_Contraseña.aspx.vb">
+      <DependentUpon>Cambiar_Contraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Contacto.aspx.designer.vb">
+      <DependentUpon>Contacto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Contacto.aspx.vb">
+      <DependentUpon>Contacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\Inicio.aspx.designer.vb">
       <DependentUpon>Inicio.aspx</DependentUpon>
@@ -369,6 +387,13 @@
       <DependentUpon>Productos_ABM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Sites\Negocio\Producto_Detalle.aspx.designer.vb">
+      <DependentUpon>Producto_Detalle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Negocio\Producto_Detalle.aspx.vb">
+      <DependentUpon>Producto_Detalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Sites\Negocio\Stock.aspx.designer.vb">
       <DependentUpon>Stock.aspx</DependentUpon>
     </Compile>
@@ -382,6 +407,13 @@
     <Compile Include="Sites\NotFound.aspx.vb">
       <DependentUpon>NotFound.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Productos.aspx.designer.vb">
+      <DependentUpon>Productos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Productos.aspx.vb">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\QuienesSomos.aspx.designer.vb">
       <DependentUpon>QuienesSomos.aspx</DependentUpon>

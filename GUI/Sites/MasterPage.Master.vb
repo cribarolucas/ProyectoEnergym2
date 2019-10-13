@@ -192,7 +192,20 @@
         menu.ChildItems.Add(m)
     End Sub
 
-
+    Private Sub QuitarItemProductos()
+        Dim item As MenuItem = MenuPrincipal.FindItem("M_PROD")
+        If Not IsNothing(item) Then
+            MenuPrincipal.Items.Remove(item)
+        End If
+    End Sub
+    Private Sub AgregarItemProductos()
+        Dim item As MenuItem = MenuPrincipal.FindItem("M_PROD")
+        If IsNothing(item) Then
+            Dim m As MenuItem = New MenuItem("Productos", "M_PROD")
+            m.NavigateUrl = "~/Sites/Productos.aspx"
+            MenuPrincipal.Items.Add(m)
+        End If
+    End Sub
 
     Protected Sub L_LOGOUT_Click(sender As Object, e As EventArgs) Handles L_LOGOUT.Click
         Session.Remove("Usuario_Conectado")

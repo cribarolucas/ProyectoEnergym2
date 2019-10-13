@@ -127,12 +127,7 @@ Public Class OrdenesProduccion
         Me.TraducirControles()
         hfOrdenProduccionID.Value = ""
     End Sub
-    Private Sub BindDataDetalles(ByVal pedido As BE.BE_Pedido)
-        gvDetalles.DataSource = Nothing
-        gvDetalles.DataSource = pedido.DetallesPedido
-        gvDetalles.DataBind()
-        Me.TraducirControles()
-    End Sub
+
     Private Sub BindDataEstadoOrdenes()
         ddlEstado.DataSource = Nothing
         ddlEstado.DataSource = _bllEstado.ListarTodosPorOrdenProduccion()
@@ -172,12 +167,7 @@ Public Class OrdenesProduccion
     End Sub
 
     Protected Sub gvDetalles_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
-        gvDetalles.PageIndex = e.NewPageIndex
-        Dim pedido As BE.BE_Pedido = New BE.BE_Pedido
-        pedido.ID = Convert.ToInt32(hfOrdenProduccionID.Value)
-        If pedido.ID > 0 Then
-            Me.BindDataDetalles(pedido)
-        End If
+
     End Sub
 
     Protected Sub B_ODP_LIS_Click(sender As Object, e As EventArgs) Handles B_ODP_LIS.Click

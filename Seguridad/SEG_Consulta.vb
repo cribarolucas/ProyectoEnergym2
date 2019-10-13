@@ -7,7 +7,7 @@ Public Class SEG_Consulta
         Dim resultado As Boolean = True
         Dim SEG_GestorCifrado As Seguridad.SEG_GestorCifrado = New SEG_GestorCifrado
         Dim remitente As String = ConfigurationSettings.AppSettings.Get("email-usuario").ToString
-        Dim contraseña As String = SEG_GestorCifrado.DecypherTripleDES( _
+        Dim contraseña As String = SEG_GestorCifrado.DecypherTripleDES(
                                 ConfigurationSettings.AppSettings.Get("email-contraseña").ToString, "123456789", True)
         Dim asunto As String = ConfigurationSettings.AppSettings.Get("email-asunto").ToString
         Dim mensajeCuerpo As String = consulta.Consulta & vbCrLf & "Enviado por: " & consulta.Nombre & " " & _
