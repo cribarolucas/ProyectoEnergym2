@@ -30,10 +30,10 @@ Public Class Idiomas
         Dim ci() As CultureInfo
         ci = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
 
-        ddlIdioma.DataSource = Nothing
-        ddlIdioma.DataSource = ci
-        ddlIdioma.SelectedIndex = -1
-        ddlIdioma.DataBind()
+        'ddlIdioma.DataSource = Nothing
+        'ddlIdioma.DataSource = ci
+        'ddlIdioma.SelectedIndex = -1
+        'ddlIdioma.DataBind()
 
         gvIdiomas.DataSource = Nothing
         gvIdiomas.DataSource = idiomas
@@ -56,7 +56,8 @@ Public Class Idiomas
     Protected Sub OnPaging_L(ByVal sender As Object, ByVal e As GridViewPageEventArgs)
         gvLeyendas.PageIndex = e.NewPageIndex
         Dim BE_Idioma As BE.BE_Idioma = New BE.BE_Idioma
-        BE_Idioma.Codigo = ddlIdioma.SelectedValue
+        BE_Idioma.Codigo = txtIdiomaCodigo.Text
+        'BE_Idioma.Codigo = ddlIdioma.SelectedValue
         Me.BindGridLeyendas(BE_Idioma)
     End Sub
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
@@ -118,8 +119,7 @@ Public Class Idiomas
         Me.OcultarDivLeyenda(True)
     End Sub
     Private Sub LimpiarCamposIdioma()
-        ddlIdioma.Enabled = True
-        ddlIdioma.SelectedIndex = -1
+        txtIdiomaCodigo.Text = ""
         txtIdiomaNombre.Text = ""
         lblErrorI.Text = ""
         Me.RestablecerColorFilasGridIdiomas()
@@ -135,13 +135,13 @@ Public Class Idiomas
     End Sub
     Protected Sub OnSelectedIndexChanged_I(ByVal sender As Object, ByVal e As EventArgs)
 
-        ddlIdioma.SelectedValue = (DirectCast(gvIdiomas.SelectedRow.FindControl("lblID"), Label).Text)
-        ddlIdioma.Enabled = False
+        txtIdiomaCodigo.Text = (DirectCast(gvIdiomas.SelectedRow.FindControl("lblID"), Label).Text)
+
         txtIdiomaNombre.Text = (DirectCast(gvIdiomas.SelectedRow.FindControl("lblNombre"), Label).Text)
 
         'Busco las leyendas del idioma seleccionado dentro de la variable de aplicación "Idiomas"
-        Dim leyendas As List(Of BE.BE_Leyenda) = DirectCast(Application("Idiomas"), List(Of BE.BE_Idioma)). _
-                                                 Find(Function(x) x.Codigo = ddlIdioma.SelectedValue).Leyendas
+        Dim leyendas As List(Of BE.BE_Leyenda) = DirectCast(Application("Idiomas"), List(Of BE.BE_Idioma)).
+                                                 Find(Function(x) x.Codigo = txtIdiomaCodigo.Text).Leyendas
 
         gvLeyendas.DataSource = Nothing
         gvLeyendas.DataSource = leyendas
@@ -172,7 +172,7 @@ Public Class Idiomas
         Dim SEG_Leyenda As Seguridad.SEG_Leyenda = New Seguridad.SEG_Leyenda
 
         _usuarioConectado = Session("Usuario_Conectado")
-        BE_Idioma.Codigo = ddlIdioma.SelectedValue
+        BE_Idioma.Codigo = txtIdiomaCodigo.Text
 
         BE_Leyenda.Codigo = txtLeyID.Text
         BE_Leyenda.Descripcion = txtLeyDesc.Text
@@ -201,7 +201,7 @@ Public Class Idiomas
         Dim SEG_Leyenda As Seguridad.SEG_Leyenda = New Seguridad.SEG_Leyenda
 
         _usuarioConectado = Session("Usuario_Conectado")
-        BE_Idioma.Codigo = ddlIdioma.SelectedValue
+        BE_Idioma.Codigo = txtIdiomaCodigo.Text
         BE_Idioma.Nombre = txtIdiomaNombre.Text
 
         If SEG_Idioma.AgregarIdioma(BE_Idioma) Then
@@ -233,7 +233,7 @@ Public Class Idiomas
         Dim BE_Idioma As BE.BE_Idioma = New BE.BE_Idioma
 
         _usuarioConectado = Session("Usuario_Conectado")
-        BE_Idioma.Codigo = ddlIdioma.SelectedValue
+        BE_Idioma.Codigo = txtIdiomaCodigo.Text
         BE_Idioma.Nombre = txtIdiomaNombre.Text
 
         If SEG_Idioma.ModificarIdioma(BE_Idioma) Then
@@ -261,7 +261,7 @@ Public Class Idiomas
         Dim BE_Idioma As BE.BE_Idioma = New BE.BE_Idioma
 
         _usuarioConectado = Session("Usuario_Conectado")
-        BE_Idioma.Codigo = ddlIdioma.SelectedValue
+        BE_Idioma.Codigo = txtIdiomaCodigo.Text
 
         If SEG_Idioma.EliminarIdioma(BE_Idioma) Then
             Me.BindGridIdiomas()

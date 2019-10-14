@@ -1,6 +1,7 @@
 ﻿function ValidarAgregarModificarIdioma() {
     var nombre = document.getElementById("txtIdiomaNombre");
-    if (nombre.value.trim() === '') {
+    var codigo = document.getElementById("txtIdiomaCodigo");
+    if (nombre.value.trim() === '' || codigo.value.trim() === '') {
         var lblError = document.getElementById("lblErrorI");
         lblError.style.display = 'block';
         var leyendas = document.getElementById("hfLeyendasIdiomaActual");
@@ -8,11 +9,23 @@
         //Debe completar todos los campos.
         lblError.innerHTML = arraySearch("ME_018", deserializeString);
         lblError.style.color = "red";
+        
         return false;
     }
-    else {
-        return true;
+
+        if (codigo.value.length > 7) {
+        var lblError = document.getElementById("lblErrorI");
+        lblError.style.display = 'block';
+        var leyendas = document.getElementById("hfLeyendasIdiomaActual");
+        var deserializeString = JSON.parse(leyendas.value);
+        //Codigo de idioma mayor a 7 caracteres
+        lblError.innerHTML = arraySearch("ME_098", deserializeString);
+        lblError.style.color = "red";
+        return false;
     }
+  
+        return true;
+
 }
 
 function ValidarModificarLeyenda() {

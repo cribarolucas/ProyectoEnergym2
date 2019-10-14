@@ -78,26 +78,28 @@ Public Class Productos
     End Sub
 
     Protected Sub dlProductos_ItemCommand(source As Object, e As DataListCommandEventArgs) Handles dlProductos.ItemCommand
+        'Ingresa aqui cuando hago click en agregar al carrito o ver detalle del producto
 
         If (e.CommandName = "AddShopCart") Then
-            dlProductos.SelectedIndex = e.Item.ItemIndex
 
-            Dim BE_CarritoItem As BE.BE_CarritoItem = New BE.BE_CarritoItem
-            Dim BE_CarritoCompras As BE.BE_CarritoCompras = Session("CarritoCompras")
-            Dim BLL_CarritoCompras As BLL.BLL_CarritoCompras = New BLL.BLL_CarritoCompras
-            If IsNothing(BE_CarritoCompras) Then
-                BE_CarritoCompras = New BE.BE_CarritoCompras
-            End If
+            'dlProductos.SelectedIndex = e.Item.ItemIndex
 
-            BE_CarritoItem.Producto.ID = Convert.ToInt32(DirectCast(dlProductos.SelectedItem.FindControl("lblID"), Label).Text)
-            BE_CarritoItem.Producto = DirectCast(Session("Productos"), List(Of BE.BE_Producto)).Find(Function(x) x.ID = BE_CarritoItem.Producto.ID)
+            'Dim BE_CarritoItem As BE.BE_CarritoItem = New BE.BE_CarritoItem
+            'Dim BE_CarritoCompras As BE.BE_CarritoCompras = Session("CarritoCompras")
+            'Dim BLL_CarritoCompras As BLL.BLL_CarritoCompras = New BLL.BLL_CarritoCompras
+            'If IsNothing(BE_CarritoCompras) Then
+            '    BE_CarritoCompras = New BE.BE_CarritoCompras
+            'End If
+
+            'BE_CarritoItem.Producto.ID = Convert.ToInt32(DirectCast(dlProductos.SelectedItem.FindControl("lblID"), Label).Text)
+            'BE_CarritoItem.Producto = DirectCast(Session("Productos"), List(Of BE.BE_Producto)).Find(Function(x) x.ID = BE_CarritoItem.Producto.ID)
 
             'BLL_CarritoCompras.ActualizarCantidadItem(BE_CarritoCompras, BE_CarritoItem)
 
             'L_ITEMS_V.Text = " " + BLL_CarritoCompras.ObtenerTotalItems(BE_CarritoCompras.CarritoItems).ToString()
 
-            Session("CarritoCompras") = Nothing
-            Session.Add("CarritoCompras", BE_CarritoCompras)
+            'Session("CarritoCompras") = Nothing
+            'Session.Add("CarritoCompras", BE_CarritoCompras)
         ElseIf (e.CommandName = "SeeDetails") Then
             dlProductos.SelectedIndex = e.Item.ItemIndex
             Dim BE_Producto As BE.BE_Producto = New BE.BE_Producto
@@ -109,6 +111,7 @@ Public Class Productos
 
     End Sub
     Protected Sub dlProductos_ItemDataBound(sender As Object, e As DataListItemEventArgs)
+        'Ingresa aca cuando va a cargar la pagina con los productos
 
         If e.Item.ItemType = ListItemType.Item OrElse
            e.Item.ItemType = ListItemType.AlternatingItem Then
@@ -131,10 +134,10 @@ Public Class Productos
         Next
     End Sub
     Protected Sub B_SEE_CART_Click(sender As Object, e As EventArgs) Handles B_SEE_CART.Click
-        If Not IsNothing(Session("CarritoCompras")) Then
-            If DirectCast(Session("CarritoCompras"), BE.BE_CarritoCompras).CarritoItems.Count > 0 Then
-                Response.Redirect("~/Sites/Negocio/CarritoCompras.aspx")
-            End If
-        End If
+        'If Not IsNothing(Session("CarritoCompras")) Then
+        '    If DirectCast(Session("CarritoCompras"), BE.BE_CarritoCompras).CarritoItems.Count > 0 Then
+        '        Response.Redirect("~/Sites/Negocio/CarritoCompras.aspx")
+        '    End If
+        'End If
     End Sub
 End Class

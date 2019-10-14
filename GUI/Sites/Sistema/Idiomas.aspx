@@ -4,7 +4,7 @@
     <script src="../../Scripts/JQuery/jquery-3.2.1.js"></script>
     <link rel="stylesheet" href="../../Estilos/chosen.css" />
     <script src="../../Scripts/JQuery/chosen.jquery.js"></script>
-    <script type="text/javascript" src="../../Scripts/Propios/Idiomas.js?Version=5"></script>
+    <script type="text/javascript" src="../../Scripts/Propios/Idiomas.js?Version=9"></script>
     <asp:HiddenField ID="hfLeyendasIdiomaActual" ClientIDMode="Static" runat="server" />
     <div class="container">
         <div id="idiomas" class="col-sm-6 col-lg-6 text-center">
@@ -35,7 +35,8 @@
                 <div class="form-group">
                     <asp:Label ID="L_COD_IDI" Text="ID" CssClass="col-sm-6 col-lg-6 control-label text-right" runat="server"></asp:Label>
                     <div class="col-sm-3 col-lg-3">
-                        <asp:DropDownList ID="ddlIdioma" ClientIDMode="Static" class="chosen-select" Height="100%" runat="server"></asp:DropDownList>
+                        <asp:TextBox ID="txtIdiomaCodigo" ClientIDMode="Static" CssClass="form-control" runat="server"></asp:TextBox>
+                        <%--<asp:DropDownList ID="ddlIdioma" ClientIDMode="Static" class="chosen-select" Height="100%" runat="server"></asp:DropDownList>--%>
                     </div>
                 </div>
             </div>
