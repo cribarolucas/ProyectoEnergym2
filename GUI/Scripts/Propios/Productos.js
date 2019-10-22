@@ -82,7 +82,7 @@ function ValidarModificar() {
         return false;
     }
     if (nombre.value.trim() === '' || detalle.value.trim() === '' ||
-        precio.value.trim() == '' || path.value.trim() === '' ||
+        precio.value.trim() == '' ||
         alto.value.trim() === '' || ancho.value.trim() === '' ||
         largo.value.trim() === '') {
         var lblError = document.getElementById("lblError");
@@ -109,6 +109,7 @@ function ValidarModificar() {
         return false;
     }
     var regex = /^\.|\.jpe?g$/i;
+    if (path.value.trim() !== ''){
     if (!regex.test(path.value)) {
         var lblError = document.getElementById("lblError");
         var leyendas = document.getElementById("hfLeyendasIdiomaActual");
@@ -117,6 +118,7 @@ function ValidarModificar() {
         lblError.innerHTML = arraySearch("ME_037", deserializeString);
         lblError.style.color = "red";
         return false;
+    }
     }
     //var regex = /^[0-9]{1,3}$/;
     //if (!regex.test(cant.value)) {

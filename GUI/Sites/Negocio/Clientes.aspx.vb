@@ -107,8 +107,14 @@ Public Class Clientes
         Dim SEG_GestorCifrado As Seguridad.SEG_GestorCifrado = New Seguridad.SEG_GestorCifrado
         'Datos cliente
         BE_Cliente.Nombre = txtNombre.Text
-        BE_Cliente.Apellido = txtApellido.Text
-        BE_Cliente.DNI = Convert.ToInt32(txtDNI.Text)
+
+        If Not String.IsNullOrWhiteSpace(txtDNI.Text) And Not String.IsNullOrWhiteSpace(txtApellido.Text) Then
+            BE_Cliente.DNI = Convert.ToInt32(txtDNI.Text)
+            BE_Cliente.Apellido = txtApellido.Text
+        Else
+            BE_Cliente.DNI = 0
+            BE_Cliente.Apellido = ""
+        End If
         BE_Cliente.CUIT = Convert.ToInt64(txtCUIT.Text)
         BE_Cliente.Calle = txtCalle.Text
         BE_Cliente.Altura = Convert.ToInt16(txtAltura.Text)
@@ -164,7 +170,9 @@ Public Class Clientes
                 L_NOM_USU.Enabled = False
                 L_ID.Visible = False
                 txtID.Visible = False
+                RBList.Visible = False
                 'Datos cliente
+                RBList.Visible = False
                 txtNombre.Enabled = False
                 txtApellido.Enabled = False
                 txtDNI.Enabled = False
@@ -349,6 +357,20 @@ Public Class Clientes
         Else
             lblError.ForeColor = Drawing.Color.Red
             lblError.Text = _segIdioma.TraducirControl("ME_065", DirectCast(Session("Idioma_Actual"), BE.BE_Idioma))
+        End If
+    End Sub
+
+
+
+    Protected Sub RBList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RBList.SelectedIndexChanged
+        If RBList.SelectedValue = "RBFisica" Then
+            txtApellido.Enabled = True
+            txtDNI.Enabled = True
+
+        ElseIf RBList.SelectedValue = "RBJuridica" Then
+            txtApellido.Enabled = False
+            txtDNI.Enabled = False
+
         End If
     End Sub
 End Class

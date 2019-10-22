@@ -18,6 +18,7 @@ Public Class ProductosABM
             hfLeyendasIdiomaActual.Value = jss.Serialize(DirectCast(Session("Idioma_Actual"), BE.BE_Idioma).Leyendas)
             Dim mp As MasterPage = Me.Master
             Dim BE_Permiso As BE.BE_Permiso = New BE.BE_Permiso
+            imgProducto.ImageUrl = "~/Images/Blanco.jpg"
             BE_Permiso.ID = 12 'Le paso el código del permiso que corresponde a la gestión de productos
             mp.VerificarAutorizacion(BE_Permiso)
             Me.BindData()
@@ -157,6 +158,10 @@ Public Class ProductosABM
 
     Protected Sub B_MODIFIC_Click(sender As Object, e As EventArgs) Handles B_MODIFIC.Click
         Dim BE_Producto As BE.BE_Producto = New BE.BE_Producto
+        Dim BLL_Producto As BLL.BLL_Producto = New BLL.BLL_Producto
+        Dim productos As New List(Of BE.BE_Producto)
+        productos = BLL_Producto.ListarProductos
+
         BE_Producto.ID = Convert.ToInt32(txtID.Text)
         BE_Producto.Nombre = txtNombre.Text
         BE_Producto.Detalle = txtDetalle.Text
@@ -164,16 +169,29 @@ Public Class ProductosABM
         BE_Producto.Alto = Convert.ToDecimal(txtAlto.Text)
         BE_Producto.Ancho = Convert.ToDecimal(txtAncho.Text)
         BE_Producto.Largo = Convert.ToDecimal(txtLargo.Text)
-        BE_Producto.FileName = Path.GetFileName(fuProducto.PostedFile.FileName)
-        BE_Producto.FilePath = "~/Images/" + BE_Producto.FileName
-        BE_Producto.FilePathThumbnail = "~/Images/Thumbnail_" + BE_Producto.FileName
 
-        Try
+        If Not fuProducto.HasFile Then
+            BE_Producto.FileName = productos.Find(Function(x) x.ID = BE_Producto.ID).FilePath.Substring(9)
+            BE_Producto.FilePath = productos.Find(Function(x) x.ID = BE_Producto.ID).FilePath
+            BE_Producto.FilePathThumbnail = productos.Find(Function(x) x.ID = BE_Producto.ID).FilePathThumbnail
+            'Dim fileName As String = Path.GetFileName(fuProducto.PostedFile.FileName)
+            'fuProducto.PostedFile.SaveAs((Server.MapPath(fileName)))
+            'Dim imagen As Image = Image.FromFile((Server.MapPath(fileName)))
+            'Dim thumbnail As Image = imagen.GetThumbnailImage(100, 100, Nothing, Nothing)
+            'thumbnail.Save((Server.MapPath(fileName)))
+        Else
+            BE_Producto.FileName = Path.GetFileName(fuProducto.PostedFile.FileName)
+            BE_Producto.FilePath = "~/Images/" + BE_Producto.FileName
+            BE_Producto.FilePathThumbnail = "~/Images/Thumbnail_" + BE_Producto.FileName
             Dim fileName As String = Path.GetFileName(fuProducto.PostedFile.FileName)
             fuProducto.PostedFile.SaveAs((Server.MapPath("~/Images/") + fileName))
             Dim imagen As Image = Image.FromFile((Server.MapPath("~/Images/") + fileName))
             Dim thumbnail As Image = imagen.GetThumbnailImage(100, 100, Nothing, Nothing)
             thumbnail.Save((Server.MapPath("~/Images/") + "Thumbnail_" + fileName))
+        End If
+
+        Try
+
 
             If _bllProducto.ModificarProducto(BE_Producto) Then
                 Me.LimpiarCampos()

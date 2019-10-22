@@ -4,7 +4,7 @@
     <script src="../../Scripts/JQuery/jquery-3.2.1.js"></script>
     <link rel="stylesheet" href="../../Estilos/chosen.css" />
     <script src="../../Scripts/JQuery/chosen.jquery.js"></script>
-    <script type="text/javascript" src="../../Scripts/Propios/Clientes.js?Version=8"></script>
+    <script type="text/javascript" src="../../Scripts/Propios/Clientes.js?Version=14"></script>
     <asp:HiddenField ID="hfLeyendasIdiomaActual" ClientIDMode="Static" runat="server" />
     <asp:HiddenField ID="hfClienteID" ClientIDMode="Static" runat="server" />
     <div class="container">
@@ -89,12 +89,20 @@
                 </Columns>
             </asp:GridView>
         </div>
+             <div class="form-group">
+                 <asp:RadioButtonList ID="RBList" runat="server" AutoPostBack="True">
+                     <asp:ListItem Selected="True" Value="RBFisica">Persona Fisica</asp:ListItem>
+                     <asp:ListItem Value="RBJuridica">Persona Juridica</asp:ListItem>
+                 </asp:RadioButtonList>
+            </div>
+        
         <div class="form-group">
             <asp:Label ID="L_ID" CssClass="col-sm-6 col-lg-6 control-label text-right" runat="server" Text="ID" />
             <div class="col-sm-2 col-lg-2">
                 <asp:TextBox ID="txtID" CssClass="form-control" ClientIDMode="Static" Enabled="false" runat="server" />
             </div>
         </div>
+        <br/>
         <div class="form-group">
             <asp:Label ID="L_NOM_USU" CssClass="col-sm-6 col-lg-6 control-label text-right" runat="server" Text="Nombre Usuario" />
             <div class="col-sm-2 col-lg-2">

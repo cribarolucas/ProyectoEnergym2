@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Productos_ABM.aspx.vb" Inherits="GUI.ProductosABM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH" runat="server">
-    <script type="text/javascript" src="../../Scripts/Propios/Productos.js?Version=7"></script>
+    <script type="text/javascript" src="../../Scripts/Propios/Productos.js?Version=9"></script>
     <asp:HiddenField ID="hfLeyendasIdiomaActual" ClientIDMode="Static" runat="server" />
 
     <div class="container">
