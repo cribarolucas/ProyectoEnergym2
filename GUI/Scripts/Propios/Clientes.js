@@ -14,7 +14,7 @@
 
     if (nomUsu.value.trim() === '' || clave.value.trim() === '' ||
         claveR.value.trim() === '' || nombre.value.trim() === '' ||
-        apellido.value.trim() === '' || dni.value.trim() === '' ||
+        //apellido.value.trim() === '' || dni.value.trim() === '' ||
         cuit.value.trim() === '' || calle.value.trim() === '' ||
         altura.value.trim() === '' || codPos.value.trim() === '' ||
         email.value.trim() === '' || telefono.value.trim() === '') {
@@ -70,6 +70,18 @@
         lblError.style.color = "red";
         return false;
     }
+    var CUIT2 = CUIT.value.toString().substr(2, 9)
+    if (dni.value != CUIT2 && dni.value.trim() != '') {
+        var lblError = document.getElementById("lblError");
+        lblError.style.display = 'block';
+        var leyendas = document.getElementById("hfLeyendasIdiomaActual");
+        var deserializeString = JSON.parse(leyendas.value);
+        //El campo "CUIT" debe ser igual al campo "DNI"
+        lblError.innerHTML = arraySearch("ME_099", deserializeString);
+        lblError.style.color = "red";
+        return false;
+    }
+
     var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!regex.test(email.value)) {
         var lblError = document.getElementById("lblError");

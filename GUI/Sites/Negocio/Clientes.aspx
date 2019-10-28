@@ -4,7 +4,7 @@
     <script src="../../Scripts/JQuery/jquery-3.2.1.js"></script>
     <link rel="stylesheet" href="../../Estilos/chosen.css" />
     <script src="../../Scripts/JQuery/chosen.jquery.js"></script>
-    <script type="text/javascript" src="../../Scripts/Propios/Clientes.js?Version=14"></script>
+    <script type="text/javascript" src="../../Scripts/Propios/Clientes.js?Version=15"></script>
     <asp:HiddenField ID="hfLeyendasIdiomaActual" ClientIDMode="Static" runat="server" />
     <asp:HiddenField ID="hfClienteID" ClientIDMode="Static" runat="server" />
     <div class="container">

@@ -263,13 +263,17 @@
     <Content Include="Scripts\JQuery\jquery-3.2.1.slim.min.js" />
     <Content Include="Scripts\Propios\BackupRestore.js" />
     <Content Include="Scripts\Propios\Bitacora.js" />
+    <Content Include="Scripts\Propios\CarritoCompras.js" />
     <Content Include="Scripts\Propios\Clientes.js" />
     <Content Include="Scripts\Propios\Contacto.js" />
+    <Content Include="Scripts\Propios\HistorialVentas.js" />
     <Content Include="Scripts\Propios\Idiomas.js" />
     <Content Include="Scripts\Propios\Inicio.js" />
     <Content Include="Scripts\Propios\Ordenes_Produccion.js" />
+    <Content Include="Scripts\Propios\Pedidos.js" />
     <Content Include="Scripts\Propios\Permisos.js" />
     <Content Include="Scripts\Propios\Productos.js" />
+    <Content Include="Scripts\Propios\Reportes_Ventas.js" />
     <Content Include="Scripts\Propios\Stock.js" />
     <Content Include="Scripts\Propios\Usuarios.js" />
     <Content Include="Default.aspx" />
@@ -278,10 +282,14 @@
     <Content Include="Sites\Contacto.aspx" />
     <Content Include="Sites\Inicio.aspx" />
     <Content Include="Sites\Mantenimiento.aspx" />
+    <Content Include="Sites\Negocio\CarritoCompras.aspx" />
     <Content Include="Sites\Negocio\Clientes.aspx" />
+    <Content Include="Sites\Negocio\HistorialVentas.aspx" />
     <Content Include="Sites\Negocio\Ordenes_Produccion.aspx" />
+    <Content Include="Sites\Negocio\Pedidos.aspx" />
     <Content Include="Sites\Negocio\Productos_ABM.aspx" />
     <Content Include="Sites\Negocio\Producto_Detalle.aspx" />
+    <Content Include="Sites\Negocio\Reportes_Ventas.aspx" />
     <Content Include="Sites\Negocio\Stock.aspx" />
     <Content Include="Sites\NotFound.aspx" />
     <Content Include="Sites\Productos.aspx" />
@@ -366,6 +374,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Sites\Negocio\CarritoCompras.aspx.designer.vb">
+      <DependentUpon>CarritoCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Negocio\CarritoCompras.aspx.vb">
+      <DependentUpon>CarritoCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Sites\Negocio\Clientes.aspx.designer.vb">
       <DependentUpon>Clientes.aspx</DependentUpon>
     </Compile>
@@ -373,11 +388,25 @@
       <DependentUpon>Clientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Sites\Negocio\HistorialVentas.aspx.designer.vb">
+      <DependentUpon>HistorialVentas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Negocio\HistorialVentas.aspx.vb">
+      <DependentUpon>HistorialVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Sites\Negocio\Ordenes_Produccion.aspx.designer.vb">
       <DependentUpon>Ordenes_Produccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\Negocio\Ordenes_Produccion.aspx.vb">
       <DependentUpon>Ordenes_Produccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Negocio\Pedidos.aspx.designer.vb">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Negocio\Pedidos.aspx.vb">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\Negocio\Productos_ABM.aspx.designer.vb">
@@ -392,6 +421,13 @@
     </Compile>
     <Compile Include="Sites\Negocio\Producto_Detalle.aspx.vb">
       <DependentUpon>Producto_Detalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Negocio\Reportes_Ventas.aspx.designer.vb">
+      <DependentUpon>Reportes_Ventas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Negocio\Reportes_Ventas.aspx.vb">
+      <DependentUpon>Reportes_Ventas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\Negocio\Stock.aspx.designer.vb">
