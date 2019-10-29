@@ -49,19 +49,27 @@
                     <div class="pl-3 text-nowrap">
                         <asp:Button ID="L_LOGOUT" ClientIDMode="Static" Text="Cerrar sesión" CssClass="btn btn-link" runat="server" />
                     </div>
-                    <div class="pl-3 text-nowrap">
-                        <asp:Button ID="L_IDIOMA" Text="Idioma" Enabled="false" CssClass="btn btn-light" runat="server"></asp:Button>
-                    </div>
-                    <div class="pl-3">
-                        <asp:DropDownList ID="ddlIdiomas" AutoPostBack="true" CssClass="form-control" Width="100%" Height="100%" runat="server"></asp:DropDownList>
-                    </div>
+                    
                     <div class="pl-3 text-nowrap">
                         <%--<asp:Button ID="B_DWN_MUSU" ClientIDMode="Static" Text="Manual de usuario" CssClass="btn btn-link" runat="server" />--%>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-lg-12 text-center">
+         
+        <div class="container-fluid d-inline-block">
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <div class="pl-3 text-nowrap">
+                        <asp:Button ID="L_IDIOMA" Text="Idioma" Enabled="false" CssClass="btn btn-light" runat="server"></asp:Button>
+                    </div>
+                    <div class="pl-3">
+                        <asp:DropDownList ID="ddlIdiomas" AutoPostBack="true" CssClass="form-control" Width="100%" Height="100%" runat="server"></asp:DropDownList>
+                    </div>
+                </div>
+            </div>
+        </div>
+              <div class="col-sm-12 col-lg-12 text-center">
             <asp:Image ID="Energym_Logo" CssClass="center-block" runat="server" ImageUrl="~/Images/Energym - Titulo.jpg" Width="18%" Height="80px" />
         </div>
         <div class="navbar navbar-default">
