@@ -22,12 +22,13 @@
     <link rel="stylesheet" href="../Bootstrap/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="../Bootstrap/bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../Bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
-    <script src="../Scripts/JQuery/jquery-3.2.1.min.js"></script>
-    <script src="../Bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    '
+    <script src='<%= ResolveUrl("~/Scripts/JQuery/jquery-3.2.1.min.js")%>'></script>
+    <script src='<%= ResolveUrl("~/Bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js")%>'></script>
 
 </head>
 <body>
-    <script type="text/javascript" src="../../Scripts/Login.js"></script>
+    <script type="text/javascript" src='<%= ResolveUrl("~/Scripts/Propios/Login.js")%>'></script>
 
     <form id="form1" runat="server">
 

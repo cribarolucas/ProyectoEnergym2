@@ -70,7 +70,7 @@
         lblError.style.color = "red";
         return false;
     }
-    var CUIT2 = CUIT.value.toString().substr(2, 9)
+    var CUIT2 = cuit.value.toString().substr(2, 8);
     if (dni.value != CUIT2 && dni.value.trim() != '') {
         var lblError = document.getElementById("lblError");
         lblError.style.display = 'block';
