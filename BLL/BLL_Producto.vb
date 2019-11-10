@@ -4,6 +4,14 @@ Public Class BLL_Producto
     Public Function ListarProductos() As List(Of BE.BE_Producto)
         Return _dalProducto.ListarProductos()
     End Function
+
+    Public Function ListarMusculacion() As List(Of BE.BE_Producto)
+        Return _dalProducto.ListarMusculacion()
+    End Function
+    Public Function ListarCardio() As List(Of BE.BE_Producto)
+        Return _dalProducto.ListarCardio()
+    End Function
+
     Public Function AgregarProducto(ByRef producto As BE.BE_Producto) As Boolean
         Return _dalProducto.AgregarProducto(producto)
     End Function

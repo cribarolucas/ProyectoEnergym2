@@ -113,6 +113,24 @@ Partial Public Class ProductosABM
     Protected WithEvents txtPrecio As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Control L_TIPO.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents L_TIPO As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control ddltipo1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddltipo1 As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
     '''Control L_IMAGEN.
     '''</summary>
     '''<remarks>

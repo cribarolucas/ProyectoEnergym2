@@ -120,4 +120,13 @@ Partial Public Class MasterPage
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents CPH As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    
+    '''<summary>
+    '''Control CPH2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents CPH2 As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class

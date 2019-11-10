@@ -60,6 +60,110 @@ Public Class DAL_Producto
         Return productos
 
     End Function
+
+    Public Function ListarMusculacion() As List(Of BE.BE_Producto)
+        Dim productos As List(Of BE.BE_Producto) = New List(Of BE.BE_Producto)
+        Dim BE_Bitacora As BE.BE_Bitacora = New BE.BE_Bitacora
+        Dim DAL_Bitacora As DAL_Bitacora = New DAL_Bitacora
+        Dim producto As BE.BE_Producto
+
+        Try
+
+            Dim tabla As DataTable = _dalAcceso.Leer("Listar_Musculacion")
+
+            For Each registro As DataRow In tabla.Rows
+
+                producto = New BE.BE_Producto
+                producto.ID = Convert.ToInt32(registro("ID_P"))
+                producto.Nombre = registro("Nombre").ToString
+                producto.Detalle = registro("Detalle").ToString
+                producto.Precio = Convert.ToDecimal(registro("Precio"))
+                producto.Tipo = registro("Tipo").ToString
+                productos.Add(producto)
+
+            Next
+
+        Catch ex2 As ArgumentNullException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Cadena de conexión inválida: " & ex2.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex1 As SqlClient.SqlException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex1.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex As Exception
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        End Try
+
+        Return productos
+
+    End Function
+
+
+    Public Function ListarCardio() As List(Of BE.BE_Producto)
+        Dim productos As List(Of BE.BE_Producto) = New List(Of BE.BE_Producto)
+        Dim BE_Bitacora As BE.BE_Bitacora = New BE.BE_Bitacora
+        Dim DAL_Bitacora As DAL_Bitacora = New DAL_Bitacora
+        Dim producto As BE.BE_Producto
+
+        Try
+
+            Dim tabla As DataTable = _dalAcceso.Leer("Listar_Cardio")
+
+            For Each registro As DataRow In tabla.Rows
+
+                producto = New BE.BE_Producto
+                producto.ID = Convert.ToInt32(registro("ID_P"))
+                producto.Nombre = registro("Nombre").ToString
+                producto.Detalle = registro("Detalle").ToString
+                producto.Precio = Convert.ToDecimal(registro("Precio"))
+                producto.Tipo = registro("Tipo").ToString
+                productos.Add(producto)
+
+            Next
+
+        Catch ex2 As ArgumentNullException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Cadena de conexión inválida: " & ex2.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex1 As SqlClient.SqlException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex1.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex As Exception
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        End Try
+
+        Return productos
+
+    End Function
+
     Public Function AgregarProducto(ByRef producto As BE.BE_Producto) As Boolean
         Dim parametros As List(Of SqlParameter) = New List(Of SqlParameter)
         Dim BE_Bitacora As BE.BE_Bitacora = New BE.BE_Bitacora
@@ -71,6 +175,7 @@ Public Class DAL_Producto
             Dim nombre As SqlParameter = New SqlParameter("@nombre", producto.Nombre)
             Dim detalle As SqlParameter = New SqlParameter("@detalle", producto.Detalle)
             Dim precio As SqlParameter = New SqlParameter("@precio", producto.Precio)
+            Dim tipo As SqlParameter = New SqlParameter("@tipo", producto.Tipo)
             Dim cant As SqlParameter = New SqlParameter("@cant", producto.Stock.Cantidad)
             Dim alto As SqlParameter = New SqlParameter("@alto", producto.Alto)
             Dim largo As SqlParameter = New SqlParameter("@largo", producto.Largo)
@@ -82,6 +187,7 @@ Public Class DAL_Producto
             parametros.Add(nombre)
             parametros.Add(detalle)
             parametros.Add(precio)
+            parametros.Add(tipo)
             parametros.Add(cant)
             parametros.Add(alto)
             parametros.Add(largo)
@@ -139,6 +245,7 @@ Public Class DAL_Producto
             Dim precio As SqlParameter = New SqlParameter("@precio", SqlDbType.Decimal)
             precio.Value = producto.Precio
             'Dim cant As SqlParameter = New SqlParameter("@cant", producto.Stock.Cantidad)
+            Dim tipo As SqlParameter = New SqlParameter("@tipo", producto.Tipo)
             Dim alto As SqlParameter = New SqlParameter("@alto", SqlDbType.Decimal)
             alto.Value = producto.Alto
             Dim largo As SqlParameter = New SqlParameter("@largo", SqlDbType.Decimal)
@@ -154,6 +261,7 @@ Public Class DAL_Producto
             parametros.Add(detalle)
             parametros.Add(precio)
             'parametros.Add(cant)
+            parametros.Add(tipo)
             parametros.Add(alto)
             parametros.Add(largo)
             parametros.Add(ancho)

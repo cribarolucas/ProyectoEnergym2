@@ -266,6 +266,7 @@
     <Content Include="Scripts\Propios\CarritoCompras.js" />
     <Content Include="Scripts\Propios\Clientes.js" />
     <Content Include="Scripts\Propios\Contacto.js" />
+    <Content Include="Scripts\Propios\Diseñar_Espacio.js" />
     <Content Include="Scripts\Propios\HistorialVentas.js" />
     <Content Include="Scripts\Propios\Idiomas.js" />
     <Content Include="Scripts\Propios\Inicio.js" />
@@ -278,7 +279,9 @@
     <Content Include="Scripts\Propios\Usuarios.js" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Sites\Cliente\Calcular_Maquinas.aspx" />
     <Content Include="Sites\Cliente\Cambiar_Contraseña.aspx" />
+    <Content Include="Sites\Cliente\Diseñar_Espacio.aspx" />
     <Content Include="Sites\Contacto.aspx" />
     <Content Include="Sites\Inicio.aspx" />
     <Content Include="Sites\Mantenimiento.aspx" />
@@ -320,11 +323,25 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Sites\Cliente\Calcular_Maquinas.aspx.designer.vb">
+      <DependentUpon>Calcular_Maquinas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Cliente\Calcular_Maquinas.aspx.vb">
+      <DependentUpon>Calcular_Maquinas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Sites\Cliente\Cambiar_Contraseña.aspx.designer.vb">
       <DependentUpon>Cambiar_Contraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\Cliente\Cambiar_Contraseña.aspx.vb">
       <DependentUpon>Cambiar_Contraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Cliente\Diseñar_Espacio.aspx.designer.vb">
+      <DependentUpon>Diseñar_Espacio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Cliente\Diseñar_Espacio.aspx.vb">
+      <DependentUpon>Diseñar_Espacio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\Contacto.aspx.designer.vb">
@@ -547,7 +564,7 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\PublishProfiles\Guido.pubxml" />
+    <None Include="My Project\PublishProfiles\Lucas.pubxml" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

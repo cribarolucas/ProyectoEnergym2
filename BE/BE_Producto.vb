@@ -44,6 +44,16 @@
         End Set
     End Property
 
+    Private _tipo As String
+    Public Property Tipo() As String
+        Get
+            Return _tipo
+        End Get
+        Set(ByVal value As String)
+            _tipo = value
+        End Set
+    End Property
+
     Private _fileName As String
     Public Property FileName() As String
         Get
@@ -113,5 +123,16 @@
             _stock = value
         End Set
     End Property
+
+    Private _cantidad As Integer
+    Public Property Cantidad() As Integer
+        Get
+            Return _cantidad
+        End Get
+        Set(ByVal value As Integer)
+            _cantidad = value
+        End Set
+    End Property
+
 
 End Class

@@ -125,6 +125,7 @@ Public Class ProductosABM
         BE_Producto.Nombre = txtNombre.Text
         BE_Producto.Detalle = txtDetalle.Text
         BE_Producto.Precio = Convert.ToDecimal(txtPrecio.Text)
+        BE_Producto.Tipo = ddltipo1.SelectedValue.ToString
         BE_Producto.Alto = Convert.ToDecimal(txtAlto.Text)
         BE_Producto.Ancho = Convert.ToDecimal(txtAncho.Text)
         BE_Producto.Largo = Convert.ToDecimal(txtLargo.Text)
@@ -166,6 +167,7 @@ Public Class ProductosABM
         BE_Producto.Nombre = txtNombre.Text
         BE_Producto.Detalle = txtDetalle.Text
         BE_Producto.Precio = Convert.ToDecimal(txtPrecio.Text)
+        BE_Producto.Tipo = ddltipo1.SelectedValue.ToString
         BE_Producto.Alto = Convert.ToDecimal(txtAlto.Text)
         BE_Producto.Ancho = Convert.ToDecimal(txtAncho.Text)
         BE_Producto.Largo = Convert.ToDecimal(txtLargo.Text)
@@ -198,6 +200,7 @@ Public Class ProductosABM
                 lblError.Text = _segIdioma.TraducirControl("MS_015", _usuarioConectado.Idioma)
                 lblError.ForeColor = Drawing.Color.Green
                 Me.BindData()
+
             Else
                 lblError.Text = _segIdioma.TraducirControl("ME_033", _usuarioConectado.Idioma)
                 lblError.ForeColor = Drawing.Color.Red
@@ -206,6 +209,7 @@ Public Class ProductosABM
             lblError.Text = _segIdioma.TraducirControl("ME_052", _usuarioConectado.Idioma)
             lblError.ForeColor = Drawing.Color.Red
         End Try
+        imgProducto.ImageUrl = "~/Images/Blanco.jpg"
     End Sub
     Protected Sub B_ELIMINAR_Click(sender As Object, e As EventArgs) Handles B_ELIMINAR.Click
         Dim BE_Producto As BE.BE_Producto = New BE.BE_Producto
@@ -221,6 +225,7 @@ Public Class ProductosABM
             lblError.ForeColor = Drawing.Color.Red
             lblError.Text = _segIdioma.TraducirControl("ME_034", _usuarioConectado.Idioma)
         End If
+        imgProducto.ImageUrl = "~/Images/Blanco.jpg"
     End Sub
     Protected Sub B_LIMPIAR_Click(sender As Object, e As EventArgs) Handles B_LIMPIAR.Click
         Me.LimpiarCampos()

@@ -146,6 +146,7 @@
                         Me.AddItem("Devoluciones", "M_DEVOL", "~/Sites/Negocio/Devoluciones.aspx", menuNegocio)
                     Case 25
                         Me.AddItem("Diseñar espacio", "M_DISE_ESP", "~/Sites/Cliente/Diseñar_Espacio.aspx", menuCliente)
+                        Me.AddItem("Calcular Maquinas", "M_CAL_MAQ", "~/Sites/Cliente/Calcular_Maquinas.aspx", menuCliente)
                     Case 26
                         Me.AddItem("Envios", "M_ENVIOS", "~/Sites/Negocio/Envios.aspx", menuNegocio)
                 End Select

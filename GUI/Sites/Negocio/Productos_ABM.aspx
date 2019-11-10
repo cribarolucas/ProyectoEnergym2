@@ -95,6 +95,16 @@
                         <asp:TextBox ID="txtPrecio" ClientIDMode="Static" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
+                     <div class="form-group">
+                    <asp:Label ID="L_TIPO" Text="Tipo" CssClass="col-sm-6 col-lg-6 control-label text-right" runat="server"></asp:Label>
+                    <div class="col-sm-4 col-lg-4">
+                        <asp:DropDownList ID="ddltipo1" runat="server">
+                            <asp:ListItem Selected="True">Musculacion</asp:ListItem>
+                            <asp:ListItem>Cardiovascular</asp:ListItem>
+                        </asp:DropDownList>
+                       
+                    </div>
+                </div>
                 <div class="form-group">
                     <asp:Label ID="L_IMAGEN" Text="Imagen" CssClass="col-sm-6 col-lg-6 control-label text-right" runat="server"></asp:Label>
                     <div class="col-sm-4 col-lg-4">

@@ -98,6 +98,8 @@
         </div>
         <asp:ContentPlaceHolder ID="CPH" runat="server">
         </asp:ContentPlaceHolder>
+             <asp:ContentPlaceHolder ID="CPH2" runat="server">
+        </asp:ContentPlaceHolder>
     </form>
 </body>
 </html>
