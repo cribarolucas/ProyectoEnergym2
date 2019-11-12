@@ -61,6 +61,100 @@ Public Class DAL_Producto
 
     End Function
 
+    Public Function ListarMuscuMin() As List(Of BE.BE_Producto)
+        Dim productos As List(Of BE.BE_Producto) = New List(Of BE.BE_Producto)
+        Dim BE_Bitacora As BE.BE_Bitacora = New BE.BE_Bitacora
+        Dim DAL_Bitacora As DAL_Bitacora = New DAL_Bitacora
+        Dim producto As BE.BE_Producto
+
+        Try
+
+            Dim tabla As DataTable = _dalAcceso.Leer("Producto_MuscuMin")
+
+            For Each registro As DataRow In tabla.Rows
+
+                producto = New BE.BE_Producto
+                producto.Precio = Convert.ToDecimal(registro("Precio"))
+                productos.Add(producto)
+
+            Next
+
+        Catch ex2 As ArgumentNullException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Cadena de conexión inválida: " & ex2.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex1 As SqlClient.SqlException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex1.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex As Exception
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        End Try
+
+        Return productos
+
+    End Function
+
+    Public Function ListarCardioMin() As List(Of BE.BE_Producto)
+        Dim productos As List(Of BE.BE_Producto) = New List(Of BE.BE_Producto)
+        Dim BE_Bitacora As BE.BE_Bitacora = New BE.BE_Bitacora
+        Dim DAL_Bitacora As DAL_Bitacora = New DAL_Bitacora
+        Dim producto As BE.BE_Producto
+
+        Try
+
+            Dim tabla As DataTable = _dalAcceso.Leer("Producto_CardioMin")
+
+            For Each registro As DataRow In tabla.Rows
+
+                producto = New BE.BE_Producto
+                producto.Precio = Convert.ToDecimal(registro("Precio"))
+                productos.Add(producto)
+
+            Next
+
+        Catch ex2 As ArgumentNullException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Cadena de conexión inválida: " & ex2.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex1 As SqlClient.SqlException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex1.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex As Exception
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        End Try
+
+        Return productos
+
+    End Function
+
     Public Function ListarMusculacion() As List(Of BE.BE_Producto)
         Dim productos As List(Of BE.BE_Producto) = New List(Of BE.BE_Producto)
         Dim BE_Bitacora As BE.BE_Bitacora = New BE.BE_Bitacora

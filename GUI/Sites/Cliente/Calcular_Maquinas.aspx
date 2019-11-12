@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Calcular_Maquinas.aspx.vb" Inherits="GUI.Calcular_Maquinas" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Calcular_Maquinas.aspx.vb" Inherits="GUI.Calcular_Maquinas" EnableEventValidation = "false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
-    <script type="text/javascript" src="../../Scripts/Propios/Productos.js?Version=9"></script>
+    <script type="text/javascript" src="../../Scripts/Propios/CalcularMaquinas.js?Version=3"></script>
     <asp:HiddenField ID="hfLeyendasIdiomaActual" ClientIDMode="Static" runat="server" />
 
     <div class="container">
@@ -59,13 +59,18 @@
                 </Columns>
             </asp:GridView>
         </div>
+        <br/>
         <div class="col-sm-12 col-lg-12 text-center">
             <asp:Label ID="lblError" ClientIDMode="Static" CssClass="control-label" runat="server"></asp:Label>
+            <asp:Label ID="lblMensaje" ClientIDMode="Static" CssClass="control-label" runat="server"></asp:Label>
         </div>
-        
+        <br/>
+        <br/>
         <div class="col-sm-12 col-lg-12 text-center">
             <asp:Button ID="B_CONFIRM" Text="Confirmar" OnClientClick="return ValidarAgregar()" CssClass="btn btn-success" runat="server"></asp:Button>
             <asp:Button ID="B_LIMPIAR" Text="Limpiar" CssClass="btn btn-info" runat="server"></asp:Button>
+            <asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-info" runat="server"></asp:Button>
+            <asp:Button ID="B_EXPORTE" Text="Exportar a Excel" CssClass="btn btn-info" runat="server"></asp:Button>
         </div>
     </div>
 </asp:Content>

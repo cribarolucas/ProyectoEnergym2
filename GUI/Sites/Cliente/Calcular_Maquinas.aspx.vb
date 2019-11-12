@@ -4,6 +4,11 @@ Imports System.Web.Script.Serialization
 Imports System.Globalization
 Imports System.Configuration
 Imports System.Drawing
+Imports System.Data.SqlClient
+Imports iTextSharp.text
+Imports iTextSharp.text.html.simpleparser
+Imports iTextSharp.text.pdf
+
 Public Class Calcular_Maquinas
     Inherits System.Web.UI.Page
     Private _usuarioConectado As BE.BE_Usuario
@@ -75,10 +80,14 @@ Public Class Calcular_Maquinas
 
         gvProductos.SelectedRow.BackColor = Color.DeepSkyBlue
         lblError.Text = ""
+        lblMensaje.Text = ""
     End Sub
     Private Sub LimpiarCampos()
         Dim mp As MasterPage = Me.Master
         mp.LimpiarCampos(Me)
+        gvProductos.DataSource = Nothing
+        gvProductos.DataBind()
+        lblMensaje.Text = ""
         Me.RestablecerColorFilasGrid()
     End Sub
     Private Sub RestablecerColorFilasGrid()
@@ -125,15 +134,17 @@ Public Class Calcular_Maquinas
         Dim musculacion As New List(Of BE.BE_Producto)
         Dim cardio As New List(Of BE.BE_Producto)
         Dim monto As New Decimal
+        Dim montoInicial As New Decimal
         Dim productos As New List(Of BE.BE_Producto)
 
+        montoInicial = Convert.ToDecimal(txtMonto.Text)
         monto = Convert.ToDecimal(txtMonto.Text)
         musculacion = _bllProducto.ListarMusculacion
         cardio = _bllProducto.ListarCardio
 
         If RBList.SelectedValue = "RBMuscu" Then
-            If monto >= 23000 Then 'menor de los de musculacion
-                While monto >= 23000
+            If monto >= _bllProducto.MuscuMin Then 'menor de los de musculacion
+                While monto >= _bllProducto.MuscuMin
                     For Each p As BE.BE_Producto In musculacion
                         If p.Precio <= monto Then
                             productos.Add(p)
@@ -141,8 +152,8 @@ Public Class Calcular_Maquinas
                         End If
                     Next
                 End While
-                If monto >= 12000 Then 'menor de los de cardio
-                    While monto >= 12000
+                If monto >= _bllProducto.CardioMin Then 'menor de los de cardio
+                    While monto >= _bllProducto.CardioMin
                         For Each p As BE.BE_Producto In cardio
                             If p.Precio <= monto Then
                                 productos.Add(p)
@@ -152,8 +163,8 @@ Public Class Calcular_Maquinas
                     End While
                 End If
             Else 'entra en la lista de cardio de una
-                If monto >= 12000 Then 'menor de los de cardio
-                    While monto >= 12000
+                If monto >= _bllProducto.CardioMin Then 'menor de los de cardio
+                    While monto >= _bllProducto.CardioMin
                         For Each p As BE.BE_Producto In cardio
                             If p.Precio <= monto Then
                                 productos.Add(p)
@@ -165,8 +176,8 @@ Public Class Calcular_Maquinas
             End If
 
         ElseIf RBList.SelectedValue = "RBCardio" Then
-            If monto >= 12000 Then 'menor de los cardio
-                While monto >= 12000
+            If monto >= _bllProducto.CardioMin Then 'menor de los cardio
+                While monto >= _bllProducto.CardioMin
                     For Each p As BE.BE_Producto In cardio
                         If p.Precio <= monto Then
                             productos.Add(p)
@@ -174,8 +185,8 @@ Public Class Calcular_Maquinas
                         End If
                     Next
                 End While
-                If monto >= 23000 Then 'menor de los de musculacion
-                    While monto >= 23000
+                If monto >= _bllProducto.MuscuMin Then 'menor de los de musculacion
+                    While monto >= _bllProducto.MuscuMin
                         For Each p As BE.BE_Producto In musculacion
                             If p.Precio <= monto Then
                                 productos.Add(p)
@@ -185,8 +196,8 @@ Public Class Calcular_Maquinas
                     End While
                 End If
             Else 'entra en la lista de musculacion de una
-                If monto >= 23000 Then 'menor de los de musculacion
-                    While monto >= 23000
+                If monto >= _bllProducto.MuscuMin Then 'menor de los de musculacion
+                    While monto >= _bllProducto.MuscuMin
                         For Each p As BE.BE_Producto In musculacion
                             If p.Precio <= monto Then
                                 productos.Add(p)
@@ -204,9 +215,67 @@ Public Class Calcular_Maquinas
 
         productos2 = DirectCast(productos.GroupBy(Function(item) item.ID).Select(Function(group) New BE.BE_Producto With {.ID = group.Key, .Nombre = group.First.Nombre, .Detalle = group.First.Detalle, .Precio = group.First.Precio, .Cantidad = group.Count(Function(item) item.ID)}).ToList(), List(Of BE.BE_Producto))
 
+        Dim invertido As New Decimal
+        invertido = montoInicial - monto
+
 
         Session.Add("Productos2", productos2)
         Me.BindData()
+        lblMensaje.Text = "El monto invertido es de " & invertido & " y el monto devuelto es de " & monto
 
+    End Sub
+    Public Overrides Sub VerifyRenderingInServerForm(control As Control)
+        'MyBase.VerifyRenderingInServerForm(control)
+
+    End Sub
+
+    Protected Sub ExportToPDF(sender As Object, e As EventArgs)
+        Using sw As New StringWriter()
+            Using hw As New HtmlTextWriter(sw)
+                'To Export all pages
+                gvProductos.AllowPaging = False
+                Me.BindData()
+
+                gvProductos.RenderControl(hw)
+                Dim sr As New StringReader(sw.ToString())
+                Dim pdfDoc As New Document(PageSize.A2, 10.0F, 10.0F, 10.0F, 0.0F)
+                Dim htmlparser As New HTMLWorker(pdfDoc)
+                PdfWriter.GetInstance(pdfDoc, Response.OutputStream)
+                pdfDoc.Open()
+                htmlparser.Parse(sr)
+                pdfDoc.Close()
+
+                Response.ContentType = "application/pdf"
+                Response.AddHeader("content-disposition", "attachment;filename=Maquinas.pdf")
+                Response.Cache.SetCacheability(HttpCacheability.NoCache)
+                Response.Write(pdfDoc)
+                Response.[End]()
+            End Using
+        End Using
+    End Sub
+
+    Protected Sub ExportToExcel(sender As Object, e As EventArgs)
+
+        Response.Clear()
+        Response.AddHeader("Content-Disposition", "attachment;filename=Maquinas.xls")
+        Response.ContentType = "application/vnd.ms-excel"
+        Response.ContentEncoding = System.Text.Encoding.Unicode
+        Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble())
+        Dim sw As StringWriter = New StringWriter()
+        Dim htw As HtmlTextWriter = New HtmlTextWriter(sw)
+        gvProductos.RenderControl(htw)
+        Response.Write(sw.ToString())
+        Response.End()
+
+    End Sub
+
+    Protected Sub B_EXPORTP_Click(sender As Object, e As EventArgs) Handles B_EXPORTP.Click
+
+        Me.ExportToPDF(sender, e)
+
+    End Sub
+
+    Protected Sub B_EXPORTE_Click(sender As Object, e As EventArgs) Handles B_EXPORTE.Click
+        Me.ExportToExcel(sender, e)
     End Sub
 End Class

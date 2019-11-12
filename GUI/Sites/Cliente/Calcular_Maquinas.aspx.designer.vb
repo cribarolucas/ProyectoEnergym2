@@ -68,6 +68,15 @@ Partial Public Class Calcular_Maquinas
     Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Control lblMensaje.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblMensaje As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control B_CONFIRM.
     '''</summary>
     '''<remarks>
@@ -84,4 +93,22 @@ Partial Public Class Calcular_Maquinas
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents B_LIMPIAR As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control B_EXPORTP.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents B_EXPORTP As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control B_EXPORTE.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents B_EXPORTE As Global.System.Web.UI.WebControls.Button
 End Class

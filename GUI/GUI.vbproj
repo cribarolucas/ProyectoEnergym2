@@ -51,6 +51,10 @@
     <Reference Include="DropDownListChosen">
       <HintPath>..\packages\DropDownListChosen.1.0.1\lib\DropDownListChosen.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -263,6 +267,7 @@
     <Content Include="Scripts\JQuery\jquery-3.2.1.slim.min.js" />
     <Content Include="Scripts\Propios\BackupRestore.js" />
     <Content Include="Scripts\Propios\Bitacora.js" />
+    <Content Include="Scripts\Propios\CalcularMaquinas.js" />
     <Content Include="Scripts\Propios\CarritoCompras.js" />
     <Content Include="Scripts\Propios\Clientes.js" />
     <Content Include="Scripts\Propios\Contacto.js" />

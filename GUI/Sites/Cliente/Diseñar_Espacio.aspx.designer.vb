@@ -39,4 +39,13 @@ Partial Public Class Diseñar_Espacio
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents L_ESP_OCUP As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control B_LIMPIAR.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents B_LIMPIAR As Global.System.Web.UI.WebControls.Button
 End Class

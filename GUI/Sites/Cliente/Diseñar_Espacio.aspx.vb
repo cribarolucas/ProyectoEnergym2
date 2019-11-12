@@ -24,9 +24,7 @@ Public Class Diseñar_Espacio
     End Sub
 
     Private Sub BindData()
-        'gvProductos.DataSource = Nothing
-        'gvProductos.DataSource = _bllProducto.ListarMusculacion
-        'gvProductos.DataBind()
+
     End Sub
 
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
@@ -64,4 +62,7 @@ Public Class Diseñar_Espacio
 
     End Sub
 
+    Protected Sub B_LIMPIAR_Click(sender As Object, e As EventArgs) Handles B_LIMPIAR.Click
+        Response.Redirect("~/Sites/Cliente/Diseñar_Espacio.aspx")
+    End Sub
 End Class

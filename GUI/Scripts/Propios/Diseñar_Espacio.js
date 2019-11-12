@@ -169,16 +169,13 @@ function init() {
     var blue = '#81D4FA';
     // specify the contents of the Palette
     myPaletteProducts.model = new go.GraphLinksModel([
-        { key: "Pan", color: blue, size: "30 30" },
+        { key: "Hom", color: blue, size: "30 30" },
         { key: "Dor", color: blue, size: "30 30" },
         { key: "Bice", color: blue, size: "60 30" },
         { key: "Pec", color: blue, size: "60 30" },
-        { key: "Tri", color: blue, size: "60 30" },
         { key: "Bici", color: blue, size: "30 60" },
-        { key: "Cua", color: blue, size: "30 60" },
-        { key: "Isq", color: blue, size: "30 60" },
         { key: "Cin", color: blue, size: "30 90" },        
-        { key: "Eli", color: blue, size: "30 90" }
+        { key: "Pie", color: blue, size: "30 60" }
     ]);
 
     // initialize the occupied space Palette
@@ -192,10 +189,10 @@ function init() {
     var red = '#F21010';
     // specify the contents of the Palette
     myPaletteOS.model = new go.GraphLinksModel([
-      { key: "EOS", color: red },
-      { key: "EOT", color: red, size: "30 60" },
-      { key: "EOW", color: red, size: "60 30" },
-      { key: "EOB", color: red, size: "60 60" }
+      { key: "EO1", color: red },
+      { key: "EO2", color: red, size: "30 60" },
+      { key: "EO3", color: red, size: "60 30" },
+      { key: "EO4", color: red, size: "60 60" }
     ]);
 
     //// initialize the tall items Palette

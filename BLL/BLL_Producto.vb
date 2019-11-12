@@ -5,6 +5,27 @@ Public Class BLL_Producto
         Return _dalProducto.ListarProductos()
     End Function
 
+    Public Function MuscuMin() As Decimal
+        Dim productos As New List(Of BE.BE_Producto)
+        productos = _dalProducto.ListarMuscuMin
+        Dim prod As New BE.BE_Producto
+        For Each p As BE.BE_Producto In productos
+            prod.Precio = p.Precio
+        Next
+        Return prod.Precio
+    End Function
+
+    Public Function CardioMin() As Decimal
+        Dim productos As New List(Of BE.BE_Producto)
+        productos = _dalProducto.ListarCardioMin
+        Dim prod As New BE.BE_Producto
+        For Each p As BE.BE_Producto In productos
+            prod.Precio = p.Precio
+        Next
+        Return prod.Precio
+    End Function
+
+
     Public Function ListarMusculacion() As List(Of BE.BE_Producto)
         Return _dalProducto.ListarMusculacion()
     End Function
