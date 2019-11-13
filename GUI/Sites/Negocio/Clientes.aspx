@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Clientes.aspx.vb" Inherits="GUI.Clientes" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Clientes.aspx.vb" Inherits="GUI.Clientes" EnableEventValidation = "false"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
     <script src="../../Scripts/JQuery/jquery-3.2.1.js"></script>
@@ -216,6 +216,9 @@
             <asp:Button ID="B_LIMPIAR" Text="Limpiar" CssClass="btn btn-info" runat="server"></asp:Button>
             <asp:Button ID="B_CONFIRM" Visible="false" Text="Confirmar" CssClass="btn btn-success" runat="server"></asp:Button>
             <asp:Button ID="B_CANCELAR" Visible="false" Text="Cancelar" CssClass="btn btn-danger" runat="server"></asp:Button>
+            <asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-warning" runat="server"></asp:Button>
+            <asp:Button ID="B_EXPORTE" Text="Exportar a Excel" CssClass="btn btn-warning" runat="server"></asp:Button>
+        
         </div>
     </div>
 </asp:Content>

@@ -257,15 +257,60 @@ Public Class Calcular_Maquinas
     Protected Sub ExportToExcel(sender As Object, e As EventArgs)
 
         Response.Clear()
-        Response.AddHeader("Content-Disposition", "attachment;filename=Maquinas.xls")
+        Response.Buffer = True
+        Response.AddHeader("content-disposition", "attachment;filename=Maquinas.xls")
+        Response.Charset = ""
         Response.ContentType = "application/vnd.ms-excel"
-        Response.ContentEncoding = System.Text.Encoding.Unicode
-        Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble())
-        Dim sw As StringWriter = New StringWriter()
-        Dim htw As HtmlTextWriter = New HtmlTextWriter(sw)
-        gvProductos.RenderControl(htw)
-        Response.Write(sw.ToString())
+
+        Dim sw As New StringWriter()
+        Dim hw As New HtmlTextWriter(sw)
+        gvProductos.AllowPaging = False
+        Me.BindData()
+        'gvProductos.DataBind()
+
+        'Change the Header Row back to white color
+
+        gvProductos.HeaderRow.Style.Add("background-color", "#FFFFFF")
+
+        'Apply style to Individual Cells
+
+        gvProductos.HeaderRow.Cells(0).Style.Add("background-color", "green")
+        gvProductos.HeaderRow.Cells(1).Style.Add("background-color", "green")
+        gvProductos.HeaderRow.Cells(2).Style.Add("background-color", "green")
+        gvProductos.HeaderRow.Cells(3).Style.Add("background-color", "green")
+        gvProductos.HeaderRow.Cells(4).Style.Add("background-color", "green")
+
+        For i As Integer = 0 To gvProductos.Rows.Count - 1
+
+            Dim row As GridViewRow = gvProductos.Rows(i)
+            'Change Color back to white
+            row.BackColor = System.Drawing.Color.White
+
+            'Apply text style to each Row
+            row.Attributes.Add("class", "textmode")
+
+            'Apply style to Individual Cells of Alternating Row
+
+            If i Mod 2 <> 0 Then
+
+                row.Cells(0).Style.Add("background-color", "#C2D69B")
+                row.Cells(1).Style.Add("background-color", "#C2D69B")
+                row.Cells(2).Style.Add("background-color", "#C2D69B")
+                row.Cells(3).Style.Add("background-color", "#C2D69B")
+                row.Cells(4).Style.Add("background-color", "#C2D69B")
+            End If
+        Next
+
+        gvProductos.RenderControl(hw)
+
+        'style to format numbers to string
+
+        Dim style As String = "<style>.textmode{mso-number-format:\@;}</style>"
+        Response.Write(style)
+        Response.Output.Write(sw.ToString())
+        Response.Flush()
         Response.End()
+
 
     End Sub
 

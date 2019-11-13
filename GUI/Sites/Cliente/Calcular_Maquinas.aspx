@@ -43,7 +43,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Detalle" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                         <ItemTemplate>
-                            <asp:TextBox ID="lblDetalle" runat="server" TextMode="MultiLine" Rows="5" Enabled="false" Text='<%# Eval("Detalle")%>'></asp:TextBox>
+                            <asp:Label ID="lblDetalle" runat="server" Text='<%# Eval("Detalle")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Precio" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
@@ -69,8 +69,8 @@
         <div class="col-sm-12 col-lg-12 text-center">
             <asp:Button ID="B_CONFIRM" Text="Confirmar" OnClientClick="return ValidarAgregar()" CssClass="btn btn-success" runat="server"></asp:Button>
             <asp:Button ID="B_LIMPIAR" Text="Limpiar" CssClass="btn btn-info" runat="server"></asp:Button>
-            <asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-info" runat="server"></asp:Button>
-            <asp:Button ID="B_EXPORTE" Text="Exportar a Excel" CssClass="btn btn-info" runat="server"></asp:Button>
+            <asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-warning" runat="server"></asp:Button>
+            <asp:Button ID="B_EXPORTE" Text="Exportar a Excel" CssClass="btn btn-warning" runat="server"></asp:Button>
         </div>
     </div>
 </asp:Content>

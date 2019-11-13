@@ -1,5 +1,16 @@
 ﻿Imports System.Data
 Imports System.Web.Script.Serialization
+Imports System.IO
+Imports System.Globalization
+Imports System.Configuration
+Imports System.Drawing
+Imports System.Data.SqlClient
+Imports iTextSharp.text
+Imports iTextSharp.text.html.simpleparser
+Imports iTextSharp.text.pdf
+
+
+
 Public Class Clientes
     Inherits System.Web.UI.Page
     Private _usuarioConectado As BE.BE_Usuario
@@ -373,4 +384,125 @@ Public Class Clientes
 
         End If
     End Sub
+
+    Public Overrides Sub VerifyRenderingInServerForm(control As Control)
+        'MyBase.VerifyRenderingInServerForm(control)
+
+    End Sub
+
+    Protected Sub ExportToPDF(sender As Object, e As EventArgs)
+        Using sw As New StringWriter()
+            Using hw As New HtmlTextWriter(sw)
+                'To Export all pages
+                gvClientes.AllowPaging = False
+                Me.BindDataClientes()
+
+                gvClientes.RenderControl(hw)
+                Dim sr As New StringReader(sw.ToString())
+                Dim pdfDoc As New Document(PageSize.A2, 10.0F, 10.0F, 10.0F, 0.0F)
+                Dim htmlparser As New HTMLWorker(pdfDoc)
+                PdfWriter.GetInstance(pdfDoc, Response.OutputStream)
+                pdfDoc.Open()
+                htmlparser.Parse(sr)
+                pdfDoc.Close()
+
+                Response.ContentType = "application/pdf"
+                Response.AddHeader("content-disposition", "attachment;filename=Clientes.pdf")
+                Response.Cache.SetCacheability(HttpCacheability.NoCache)
+                Response.Write(pdfDoc)
+                Response.[End]()
+            End Using
+        End Using
+    End Sub
+
+
+    Protected Sub ExportToExcel(sender As Object, e As EventArgs)
+
+        Response.Clear()
+        Response.Buffer = True
+        Response.AddHeader("content-disposition", "attachment;filename=Clientes.xls")
+        Response.Charset = ""
+        Response.ContentType = "application/vnd.ms-excel"
+
+        Dim sw As New StringWriter()
+        Dim hw As New HtmlTextWriter(sw)
+        gvClientes.AllowPaging = False
+        Me.BindDataClientes()
+        'gvProductos.DataBind()
+
+        'Change the Header Row back to white color
+
+        gvClientes.HeaderRow.Style.Add("background-color", "#FFFFFF")
+
+        'Apply style to Individual Cells
+
+        gvClientes.HeaderRow.Cells(0).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(1).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(2).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(3).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(4).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(5).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(6).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(7).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(8).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(9).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(10).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(11).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(12).Style.Add("background-color", "green")
+        gvClientes.HeaderRow.Cells(13).Style.Add("background-color", "green")
+
+        For i As Integer = 0 To gvClientes.Rows.Count - 1
+
+            Dim row As GridViewRow = gvClientes.Rows(i)
+            'Change Color back to white
+            row.BackColor = System.Drawing.Color.White
+
+            'Apply text style to each Row
+            row.Attributes.Add("class", "textmode")
+
+            'Apply style to Individual Cells of Alternating Row
+
+            If i Mod 2 <> 0 Then
+
+                row.Cells(0).Style.Add("background-color", "#C2D69B")
+                row.Cells(1).Style.Add("background-color", "#C2D69B")
+                row.Cells(2).Style.Add("background-color", "#C2D69B")
+                row.Cells(3).Style.Add("background-color", "#C2D69B")
+                row.Cells(4).Style.Add("background-color", "#C2D69B")
+                row.Cells(5).Style.Add("background-color", "#C2D69B")
+                row.Cells(6).Style.Add("background-color", "#C2D69B")
+                row.Cells(7).Style.Add("background-color", "#C2D69B")
+                row.Cells(8).Style.Add("background-color", "#C2D69B")
+                row.Cells(9).Style.Add("background-color", "#C2D69B")
+                row.Cells(10).Style.Add("background-color", "#C2D69B")
+                row.Cells(11).Style.Add("background-color", "#C2D69B")
+                row.Cells(12).Style.Add("background-color", "#C2D69B")
+                row.Cells(13).Style.Add("background-color", "#C2D69B")
+            End If
+        Next
+
+        gvClientes.RenderControl(hw)
+
+        'style to format numbers to string
+
+        Dim style As String = "<style>.textmode{mso-number-format:\@;}</style>"
+        Response.Write(style)
+        Response.Output.Write(sw.ToString())
+        Response.Flush()
+        Response.End()
+
+
+    End Sub
+
+    Protected Sub B_EXPORTP_Click(sender As Object, e As EventArgs) Handles B_EXPORTP.Click
+
+        Me.ExportToPDF(sender, e)
+
+    End Sub
+
+
+    Protected Sub B_EXPORTE_Click(sender As Object, e As EventArgs) Handles B_EXPORTE.Click
+        Me.ExportToExcel(sender, e)
+    End Sub
+
 End Class

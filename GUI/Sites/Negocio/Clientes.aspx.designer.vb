@@ -435,4 +435,22 @@ Partial Public Class Clientes
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents B_CANCELAR As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control B_EXPORTP.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents B_EXPORTP As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control B_EXPORTE.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents B_EXPORTE As Global.System.Web.UI.WebControls.Button
 End Class
