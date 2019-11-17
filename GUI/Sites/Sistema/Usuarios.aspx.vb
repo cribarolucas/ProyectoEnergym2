@@ -1,4 +1,14 @@
 ﻿Imports System.Web.Script.Serialization
+Imports System.IO
+Imports System.Data
+Imports System.Globalization
+Imports System.Configuration
+Imports System.Drawing
+Imports System.Data.SqlClient
+Imports iTextSharp.text
+Imports iTextSharp.text.html.simpleparser
+Imports iTextSharp.text.pdf
+Imports iTextSharp.tool.xml
 Public Class Usuarios
     Inherits System.Web.UI.Page
     Private _usuarioConectado As BE.BE_Usuario
@@ -360,5 +370,106 @@ Public Class Usuarios
             End If
         Next
     End Sub
+
+
+    Public Overrides Sub VerifyRenderingInServerForm(control As Control)
+        'MyBase.VerifyRenderingInServerForm(control)
+
+    End Sub
+
+    Protected Sub ExportToPDF(sender As Object, e As EventArgs)
+        Using sw As New StringWriter()
+            Using hw As New HtmlTextWriter(sw)
+                gvUsuarios.RenderControl(hw)
+                Dim sr As New StringReader(sw.ToString())
+                Dim pdfDoc As New Document(PageSize.A4, 10.0F, 10.0F, 10.0F, 0.0F)
+                Dim writer As PdfWriter = PdfWriter.GetInstance(pdfDoc, Response.OutputStream)
+                pdfDoc.Open()
+                XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr)
+                pdfDoc.Close()
+                Response.ContentType = "application/pdf"
+                Response.AddHeader("content-disposition", "attachment;filename=Usuarios.pdf")
+                Response.Cache.SetCacheability(HttpCacheability.NoCache)
+                Response.Write(pdfDoc)
+                Response.End()
+            End Using
+        End Using
+    End Sub
+
+    Protected Sub ExportToExcel(sender As Object, e As EventArgs)
+
+        Response.Clear()
+        Response.Buffer = True
+        Response.AddHeader("content-disposition", "attachment;filename=Usuarios.xls")
+        Response.Charset = ""
+        Response.ContentType = "application/vnd.ms-excel"
+
+        Dim sw As New StringWriter()
+        Dim hw As New HtmlTextWriter(sw)
+        gvUsuarios.AllowPaging = False
+        Me.BindData()
+        'gvProductos.DataBind()
+
+        'Change the Header Row back to white color
+
+        gvUsuarios.HeaderRow.Style.Add("background-color", "#FFFFFF")
+
+        'Apply style to Individual Cells
+
+        gvUsuarios.HeaderRow.Cells(0).Style.Add("background-color", "green")
+        gvUsuarios.HeaderRow.Cells(1).Style.Add("background-color", "green")
+        gvUsuarios.HeaderRow.Cells(2).Style.Add("background-color", "green")
+        gvUsuarios.HeaderRow.Cells(3).Style.Add("background-color", "green")
+        gvUsuarios.HeaderRow.Cells(4).Style.Add("background-color", "green")
+        gvUsuarios.HeaderRow.Cells(5).Style.Add("background-color", "green")
+        gvUsuarios.HeaderRow.Cells(6).Style.Add("background-color", "green")
+
+
+        For i As Integer = 0 To gvUsuarios.Rows.Count - 1
+
+            Dim row As GridViewRow = gvUsuarios.Rows(i)
+            'Change Color back to white
+            row.BackColor = System.Drawing.Color.White
+
+            'Apply text style to each Row
+            row.Attributes.Add("class", "textmode")
+
+            'Apply style to Individual Cells of Alternating Row
+
+            If i Mod 2 <> 0 Then
+
+                row.Cells(0).Style.Add("background-color", "#C2D69B")
+                row.Cells(1).Style.Add("background-color", "#C2D69B")
+                row.Cells(2).Style.Add("background-color", "#C2D69B")
+                row.Cells(3).Style.Add("background-color", "#C2D69B")
+                row.Cells(4).Style.Add("background-color", "#C2D69B")
+                row.Cells(5).Style.Add("background-color", "#C2D69B")
+                row.Cells(6).Style.Add("background-color", "#C2D69B")
+            End If
+        Next
+
+        gvUsuarios.RenderControl(hw)
+
+        'style to format numbers to string
+
+        Dim style As String = "<style>.textmode{mso-number-format:\@;}</style>"
+        Response.Write(style)
+        Response.Output.Write(sw.ToString())
+        Response.Flush()
+        Response.End()
+
+
+    End Sub
+
+    Protected Sub B_EXPORTP_Click(sender As Object, e As EventArgs) Handles B_EXPORTP.Click
+
+        Me.ExportToPDF(sender, e)
+
+    End Sub
+
+    Protected Sub B_EXPORTE_Click(sender As Object, e As EventArgs) Handles B_EXPORTE.Click
+        Me.ExportToExcel(sender, e)
+    End Sub
+
 
 End Class

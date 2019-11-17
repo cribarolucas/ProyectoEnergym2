@@ -72,8 +72,6 @@
   <ItemGroup>
     <Compile Include="BLL_CarritoCompras.vb" />
     <Compile Include="BLL_Cliente.vb" />
-    <Compile Include="BLL_Devolucion.vb" />
-    <Compile Include="BLL_Envio.vb" />
     <Compile Include="BLL_Estado.vb" />
     <Compile Include="BLL_Factura.vb" />
     <Compile Include="BLL_FacturaDetalle.vb" />

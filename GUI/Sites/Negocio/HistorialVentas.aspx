@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="HistorialVentas.aspx.vb" Inherits="GUI.HistorialVentas" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="HistorialVentas.aspx.vb" Inherits="GUI.HistorialVentas" EnableEventValidation = "false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -29,6 +29,8 @@
     <div class="col-sm-12 col-lg-12 text-center pt-2">
         <asp:Button ID="B_ACEPTAR" CssClass="btn btn-success" Text="Aceptar" OnClientClick="return Validar();" runat="server" />
         <asp:Button ID="B_LIMPIAR" CssClass="btn btn-info" Text="Limpiar" OnClientClick="return Validar();" runat="server" />
+       
+
     </div>
     <div class="col-sm-12 col-lg-12 pt-2">
         <asp:GridView ID="gvFacturas" runat="server" HorizontalAlign="Center" BorderColor="Transparent"
@@ -70,7 +72,14 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-    </div>
+    </div >
+     <div class="col-sm-12 col-lg-12 text-center pt-2">
+         
+    <asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-warning" runat="server"></asp:Button>
+    <asp:Button ID="B_EXPORTE" Text="Exportar a Excel" CssClass="btn btn-warning" runat="server"></asp:Button>
+
+     </div>
+    <br/>
     <div class="col-sm-12 col-lg-12 pt-2">
         <asp:GridView AutoSizeColumnsMode="Fill" ID="gvDetalles" runat="server" HorizontalAlign="Center"
             AutoGenerateColumns="false" PageSize="5" OnRowDataBound="gvDetalles_RowDataBound"
@@ -101,4 +110,11 @@
             </Columns>
         </asp:GridView>
     </div>
+         <div class="col-sm-12 col-lg-12 text-center pt-2">
+         
+    <asp:Button ID="B_EXPORTP1" Text="Exportar Detalle a PDF" CssClass="btn btn-warning" runat="server"></asp:Button>
+    <asp:Button ID="B_EXPORTE1" Text="Exportar Detalle a Excel" CssClass="btn btn-warning" runat="server"></asp:Button>
+
+     </div>
+
 </asp:Content>

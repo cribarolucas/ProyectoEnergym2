@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Stock.aspx.vb" Inherits="GUI.Stock" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Stock.aspx.vb" Inherits="GUI.Stock" 
+EnableEventValidation = "false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -63,6 +64,9 @@
         <div class="col-sm-12 col-lg-12 text-center pt-2">
             <asp:Button ID="B_ODP_GEN" Text="Generar orden de produccón" CssClass="btn btn-success" OnClientClick="return GenerarOrdenProduccion();" runat="server" />
             <asp:Button ID="B_LIMPIAR" Text="Limpiar selección" CssClass="btn btn-info" runat="server" />
+        
+        <asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-warning" runat="server"></asp:Button>
+<asp:Button ID="B_EXPORTE" Text="Exportar a Excel" CssClass="btn btn-warning" runat="server"></asp:Button>
         </div>
     </div>
 </asp:Content>

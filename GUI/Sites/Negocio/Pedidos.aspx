@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Pedidos.aspx.vb" Inherits="GUI.Pedidos" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Pedidos.aspx.vb" Inherits="GUI.Pedidos" EnableEventValidation = "false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -134,6 +134,16 @@
             <asp:Button ID="B_PED_APR" Text="Aprobar pedido" CssClass="btn btn-success" OnClientClick="return ValidarCambioEstado();" runat="server" />
             <asp:Button ID="B_PED_CAN" Text="Cancelar pedido" CssClass="btn btn-danger" OnClientClick="return ValidarCambioEstado();" runat="server" />
             <asp:Button ID="B_LIMPIAR" Text="Limpiar selección" CssClass="btn btn-info" runat="server" />
+            <br />
+<br/>
+<asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-warning" runat="server"></asp:Button>
+<asp:Button ID="B_EXPORTE" Text="Exportar a Excel" CssClass="btn btn-warning" runat="server"></asp:Button>
+            <br />
+<br/>
+            <asp:Button ID="B_EXPORTP1" Text="Exportar Detalle a PDF" CssClass="btn btn-warning" runat="server"></asp:Button>
+            <asp:Button ID="B_EXPORTE1" Text="Exportar Detalle a Excel" CssClass="btn btn-warning" runat="server"></asp:Button>
+
+
         </div>
     </div>
 

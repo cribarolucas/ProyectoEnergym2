@@ -73,8 +73,6 @@
     <Compile Include="BE_CarritoCompras.vb" />
     <Compile Include="BE_Cliente.vb" />
     <Compile Include="BE_Consulta.vb" />
-    <Compile Include="BE_Devolucion.vb" />
-    <Compile Include="BE_Envio.vb" />
     <Compile Include="BE_Estado.vb" />
     <Compile Include="BE_Factura.vb" />
     <Compile Include="BE_FacturaDetalle.vb" />

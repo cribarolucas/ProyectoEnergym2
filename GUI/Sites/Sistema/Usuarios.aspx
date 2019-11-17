@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Usuarios.aspx.vb" Inherits="GUI.Usuarios" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Usuarios.aspx.vb" Inherits="GUI.Usuarios" EnableEventValidation = "false"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
     <script src="../../Scripts/JQuery/jquery-3.2.1.js"></script>
@@ -114,6 +114,11 @@
                     <asp:Button ID="B_MODIFIC" Text="Modificar" OnClientClick="return ValidarModificar();" CssClass="btn btn-primary" runat="server"></asp:Button>
                     <asp:Button ID="B_ELIMINAR" Text="Eliminar" OnClientClick="return ValidarEliminar();" CssClass="btn btn-danger" runat="server"></asp:Button>
                     <asp:Button ID="B_LIMPIAR" Text="Limpiar" CssClass="btn btn-info" runat="server"></asp:Button>
+                <br/>
+                     <br/>
+                    <asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-warning" runat="server"></asp:Button>
+                <asp:Button ID="B_EXPORTE" Text="Exportar a Excel" CssClass="btn btn-warning" runat="server"></asp:Button>
+                
                 </div>
             </div>
             <div class="col-sm-6 col-lg-6">

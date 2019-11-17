@@ -74,8 +74,6 @@
     <Compile Include="DAL_BackupRestore.vb" />
     <Compile Include="DAL_Bitacora.vb" />
     <Compile Include="DAL_Cliente.vb" />
-    <Compile Include="DAL_Devolucion.vb" />
-    <Compile Include="DAL_Envio.vb" />
     <Compile Include="DAL_Estado.vb" />
     <Compile Include="DAL_Factura.vb" />
     <Compile Include="DAL_FacturaDetalle.vb" />

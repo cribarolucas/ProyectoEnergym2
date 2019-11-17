@@ -182,6 +182,8 @@ Public Class Clientes
                 L_ID.Visible = False
                 txtID.Visible = False
                 RBList.Visible = False
+                B_EXPORTE.Visible = False
+                B_EXPORTP.Visible = False
                 'Datos cliente
                 RBList.Visible = False
                 txtNombre.Enabled = False
