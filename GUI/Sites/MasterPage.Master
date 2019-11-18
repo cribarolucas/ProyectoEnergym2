@@ -78,7 +78,7 @@
                 <div>
                     <asp:Menu ID="MenuPrincipal" runat="server" Orientation="Horizontal" RenderingMode="Table"
                         IncludeStyleBlock="false" StaticMenuStyle-CssClass="nav navbar-nav"
-                        DynamicMenuStyle-CssClass="dropdown-menu">
+                        DynamicMenuStyle-CssClass="dropdown-menu" DynamicMenuItemStyle-ItemSpacing="8" StaticMenuItemStyle-ItemSpacing ="8" >
 <DynamicMenuStyle CssClass="dropdown-menu"></DynamicMenuStyle>
                         <Items>
                             <asp:MenuItem NavigateUrl="~/Sites/Inicio.aspx" Text="Inicio" Value="M_INICIO"></asp:MenuItem>
