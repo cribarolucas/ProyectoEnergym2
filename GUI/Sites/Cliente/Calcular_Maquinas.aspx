@@ -28,7 +28,7 @@
                 OnSelectedIndexChanged="OnSelectedIndexChanged" AutoGenerateColumns="false" DataKeyNames="ID"
                 AlternatingRowStyle-BackColor="PowderBlue" HeaderStyle-BackColor="CornflowerBlue" BorderColor="Transparent"
                 AllowPaging="true" OnPageIndexChanging="OnPaging" 
-                PageSize="5" EmptyDataText="No records has been added." OnRowDataBound="gvProductos_RowDataBound"
+                PageSize="5" EmptyDataText=" " OnRowDataBound="gvProductos_RowDataBound"
                 CssClass="table">
                 <Columns>
     <asp:TemplateField HeaderText="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
@@ -62,7 +62,10 @@
         <br/>
         <div class="col-sm-12 col-lg-12 text-center">
             <asp:Label ID="lblError" ClientIDMode="Static" CssClass="control-label" runat="server"></asp:Label>
+            <br/>
             <asp:Label ID="lblMensaje" ClientIDMode="Static" CssClass="control-label" runat="server"></asp:Label>
+            <br/>
+            <br/>
         </div>
         <br/>
         <br/>

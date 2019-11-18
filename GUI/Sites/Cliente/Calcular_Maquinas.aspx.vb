@@ -32,6 +32,8 @@ Public Class Calcular_Maquinas
                 mp.Traducir(mp)
                 mp.Traducir(Me)
             End If
+            B_EXPORTE.Visible = False
+            B_EXPORTP.Visible = False
         End If
     End Sub
 
@@ -128,6 +130,8 @@ Public Class Calcular_Maquinas
 
     Protected Sub B_LIMPIAR_Click(sender As Object, e As EventArgs) Handles B_LIMPIAR.Click
         Me.LimpiarCampos()
+        B_EXPORTE.Visible = False
+        B_EXPORTP.Visible = False
     End Sub
 
     Protected Sub B_CONFIRM_Click(sender As Object, e As EventArgs) Handles B_CONFIRM.Click
@@ -142,6 +146,11 @@ Public Class Calcular_Maquinas
         musculacion = _bllProducto.ListarMusculacion
         cardio = _bllProducto.ListarCardio
 
+        If monto < _bllProducto.CardioMin Then
+            lblError.Text = "No le alcanza para ningun producto"
+            lblError.ForeColor = Color.Red
+        End If
+
         If RBList.SelectedValue = "RBMuscu" Then
             If monto >= _bllProducto.MuscuMin Then 'menor de los de musculacion
                 While monto >= _bllProducto.MuscuMin
@@ -149,6 +158,8 @@ Public Class Calcular_Maquinas
                         If p.Precio <= monto Then
                             productos.Add(p)
                             monto = monto - p.Precio
+                            B_EXPORTE.Visible = True
+                            B_EXPORTP.Visible = True
                         End If
                     Next
                 End While
@@ -158,6 +169,8 @@ Public Class Calcular_Maquinas
                             If p.Precio <= monto Then
                                 productos.Add(p)
                                 monto = monto - p.Precio
+                                B_EXPORTE.Visible = True
+                                B_EXPORTP.Visible = True
                             End If
                         Next
                     End While
@@ -169,10 +182,13 @@ Public Class Calcular_Maquinas
                             If p.Precio <= monto Then
                                 productos.Add(p)
                                 monto = monto - p.Precio
+                                B_EXPORTE.Visible = True
+                                B_EXPORTP.Visible = True
                             End If
                         Next
                     End While
                 End If
+
             End If
 
         ElseIf RBList.SelectedValue = "RBCardio" Then
@@ -182,6 +198,8 @@ Public Class Calcular_Maquinas
                         If p.Precio <= monto Then
                             productos.Add(p)
                             monto = monto - p.Precio
+                            B_EXPORTE.Visible = True
+                            B_EXPORTP.Visible = True
                         End If
                     Next
                 End While
@@ -191,6 +209,8 @@ Public Class Calcular_Maquinas
                             If p.Precio <= monto Then
                                 productos.Add(p)
                                 monto = monto - p.Precio
+                                B_EXPORTE.Visible = True
+                                B_EXPORTP.Visible = True
                             End If
                         Next
                     End While
@@ -202,6 +222,8 @@ Public Class Calcular_Maquinas
                             If p.Precio <= monto Then
                                 productos.Add(p)
                                 monto = monto - p.Precio
+                                B_EXPORTE.Visible = True
+                                B_EXPORTP.Visible = True
                             End If
                         Next
                     End While
@@ -210,8 +232,6 @@ Public Class Calcular_Maquinas
 
 
         End If
-
-
 
         productos2 = DirectCast(productos.GroupBy(Function(item) item.ID).Select(Function(group) New BE.BE_Producto With {.ID = group.Key, .Nombre = group.First.Nombre, .Detalle = group.First.Detalle, .Precio = group.First.Precio, .Cantidad = group.Count(Function(item) item.ID)}).ToList(), List(Of BE.BE_Producto))
 
@@ -222,6 +242,7 @@ Public Class Calcular_Maquinas
         Session.Add("Productos2", productos2)
         Me.BindData()
         lblMensaje.Text = "El monto invertido es de " & invertido & " y el monto devuelto es de " & monto
+
 
     End Sub
     Public Overrides Sub VerifyRenderingInServerForm(control As Control)

@@ -1,4 +1,4 @@
-﻿// General Parameters for this app, used during initialization
+﻿// Parámetros generales para esta aplicación, utilizados durante la inicialización
 var AllowTopLevel = false;
 var CellSize = new go.Size(30, 30);
 
@@ -14,11 +14,11 @@ function init() {
                     $(go.Shape, "LineH", { stroke: "lightgray" }),
                     $(go.Shape, "LineV", { stroke: "lightgray" })
                   ),
-            // support grid snapping when dragging and when resizing
+            // admite el ajuste de cuadrícula al arrastrar y al cambiar el tamaño
             "draggingTool.isGridSnapEnabled": true,
             "draggingTool.gridSnapCellSpot": go.Spot.Center,
             "resizingTool.isGridSnapEnabled": true,
-            allowDrop: true,  // handle drag-and-drop from the Palette
+            allowDrop: true,  // manejar arrastrar y soltar desde la paleta
             //// For this sample, automatically show the state of the diagram's model on the page
             //"ModelChanged": function (e) {
             //    if (e.isTransactionFinished) {
@@ -28,15 +28,15 @@ function init() {
             "animationManager.isEnabled": false,
             "undoManager.isEnabled": true
         });
-    // Regular Nodes represent items to be put onto racks.
-    // Nodes are currently resizable, but if that is not desired, just set resizable to false.
+    // Los nodos regulares representan elementos para colocar en bastidores
+    // Los nodos son actualmente redimensionables, pero si eso no se desea, simplemente configure redimensionable en falso.
     myDiagram.nodeTemplate =
       $(go.Node, "Auto",
         {
             resizable: false, resizeObjectName: "SHAPE",
-            // because the gridSnapCellSpot is Center, offset the Node's location
+            // porque gridSnapCellSpot es Center, compensa la ubicación del nodo
             locationSpot: new go.Spot(0, 0, CellSize.width / 2, CellSize.height / 2),
-            // provide a visual warning about dropping anything onto an "item"
+            // proporcionar una advertencia visual sobre dejar caer cualquier cosa en un "elemento"
             mouseDragEnter: function (e, node) {
                 e.handled = true;
                 node.findObject("SHAPE").fill = "red";
@@ -45,13 +45,13 @@ function init() {
             mouseDragLeave: function (e, node) {
                 node.updateTargetBindings();
             },
-            mouseDrop: function (e, node) {  // disallow dropping anything onto an "item"
+            mouseDrop: function (e, node) {  // no permitir dejar caer nada sobre un "elemento"
                 node.diagram.currentTool.doCancel();
             }
         },
-        // always save/load the point that is the top-left corner of the node, not the location
+        // siempre guarde / cargue el punto que es la esquina superior izquierda del nodo, no la ubicación
         new go.Binding("position", "pos", go.Point.parse).makeTwoWay(go.Point.stringify),
-        // this is the primary thing people see
+        // esto es lo principal que la gente ve
         $(go.Shape, "Rectangle",
           {
               name: "SHAPE",
@@ -61,20 +61,20 @@ function init() {
           },
           new go.Binding("fill", "color"),
           new go.Binding("desiredSize", "size", go.Size.parse).makeTwoWay(go.Size.stringify)),
-        // with the textual key in the middle
+        // con el texto en el medio
         $(go.TextBlock,
           { alignment: go.Spot.Center, font: 'bold 16px sans-serif' },
           new go.Binding("text", "key"))
-      );  // end Node
-    // Groups represent racks where items (Nodes) can be placed.
-    // Currently they are movable and resizable, but you can change that
-    // if you want the racks to remain "fixed".
-    // Groups provide feedback when the user drags nodes onto them.
+      );  // fin del nodo
+    // Los grupos representan bastidores donde se pueden colocar elementos (nodos).
+    // Actualmente son móviles y redimensionables, pero puedes cambiar eso
+    // si desea que los bastidores permanezcan "fixed".
+    // Los grupos proporcionan comentarios cuando el usuario arrastra nodos hacia ellos.
     function highlightGroup(grp, show) {
         if (!grp) return;
-        if (show) {  // check that the drop may really happen into the Group
+        if (show) {  // compruebe que el "drop" realmente pueda ocurrir en el Grupo
             var tool = grp.diagram.toolManager.draggingTool;
-            var map = tool.draggedParts || tool.copiedParts;  // this is a Map
+            var map = tool.draggedParts || tool.copiedParts;  // Esto es un mapa
             if (grp.canAddMembers(map.toKeySet())) {
                 grp.isHighlighted = true;
                 return;
@@ -104,7 +104,7 @@ function init() {
                 if (!ok) grp.diagram.currentTool.doCancel();
             }
         },
-        $(go.Shape, "Rectangle",  // the rectangular shape around the members
+        $(go.Shape, "Rectangle",  // la forma rectangular alrededor de los miembros
           {
               name: "SHAPE",
               fill: groupFill,
@@ -115,16 +115,16 @@ function init() {
           new go.Binding("fill", "isHighlighted", function (h) { return h ? dropFill : groupFill; }).ofObject(),
           new go.Binding("stroke", "isHighlighted", function (h) { return h ? dropStroke : groupStroke; }).ofObject())
       );
-    // decide what kinds of Parts can be added to a Group
+    // decidir qué tipo de piezas se pueden agregar a un grupo
     myDiagram.commandHandler.memberValidation = function (grp, node) {
-        if (grp instanceof go.Group && node instanceof go.Group) return false;  // cannot add Groups to Groups
-        // but dropping a Group onto the background is always OK
+        if (grp instanceof go.Group && node instanceof go.Group) return false;  // no puede agregar grupos a grupos
+        // pero dejar un grupo de fondo siempre está bien
         return true;
     };
-    // what to do when a drag-drop occurs in the Diagram's background
+    // qué hacer cuando se produce un arrastrar y soltar en el fondo del diagrama
     myDiagram.mouseDragOver = function (e) {
         if (!AllowTopLevel) {
-            // but OK to drop a group anywhere
+            // pero está bien dejar un grupo en cualquier lugar
             if (!e.diagram.selection.all(function (p) { return p instanceof go.Group; })) {
                 e.diagram.currentCursor = "not-allowed";
             }
@@ -144,7 +144,7 @@ function init() {
             }
         }
     };
-    // start off with four "racks" that are positioned next to each other
+    // comenzar con cuatro "bastidores" que se colocan uno al lado del otro
     myDiagram.model = new go.GraphLinksModel([
     { key: "G1", isGroup: true, pos: "0 0", size: "330 270" },
     { key: "G2", isGroup: true, pos: "330 0", size: "330 270" },
@@ -158,41 +158,41 @@ function init() {
             myPaletteOS.requestUpdate();
         }
     });
-    // initialize the products Palette
+    // inicializar la paleta de productos
     myPaletteProducts =
       $(go.Palette, "myPaletteProducts",
-        { // share the templates with the main Diagram
+        { // compartir las plantillas con el diagrama principal
             nodeTemplate: myDiagram.nodeTemplate,
             groupTemplate: myDiagram.groupTemplate,
             layout: $(go.GridLayout)
         });
-    var blue = '#81D4FA';
-    // specify the contents of the Palette
+    var orange = '#FFBF00';
+    // especificar el contenido de la paleta
     myPaletteProducts.model = new go.GraphLinksModel([
-        { key: "Hom", color: blue, size: "30 30" },
-        { key: "Dor", color: blue, size: "30 30" },
-        { key: "Bice", color: blue, size: "60 30" },
-        { key: "Pec", color: blue, size: "60 30" },
-        { key: "Bici", color: blue, size: "30 60" },
-        { key: "Cin", color: blue, size: "30 90" },        
-        { key: "Pie", color: blue, size: "30 60" }
+        { key: "Hom", color: orange, size: "30 30" },
+        { key: "Dor", color: orange, size: "30 30" },
+        { key: "Bice", color: orange, size: "60 30" },
+        { key: "Pec", color: orange, size: "60 30" },
+        { key: "Bici", color: orange, size: "30 60" },
+        { key: "Cin", color: orange, size: "30 90" },
+        { key: "Pie", color: orange, size: "30 60" }
     ]);
 
-    // initialize the occupied space Palette
+    // inicializar la paleta de productos
     myPaletteOS =
       $(go.Palette, "myPaletteOS",
-        { // share the templates with the main Diagram
+        { // compartir las plantillas con el diagrama principal
             nodeTemplate: myDiagram.nodeTemplate,
             groupTemplate: myDiagram.groupTemplate,
             layout: $(go.GridLayout)
         });
-    var red = '#F21010';
-    // specify the contents of the Palette
+    var white = '#FFFFFF';
+    // especificar los contenidos de las paletas
     myPaletteOS.model = new go.GraphLinksModel([
-      { key: "EO1", color: red },
-      { key: "EO2", color: red, size: "30 60" },
-      { key: "EO3", color: red, size: "60 30" },
-      { key: "EO4", color: red, size: "60 60" }
+      { key: "EO1", color: white },
+      { key: "EO2", color: white, size: "30 60" },
+      { key: "EO3", color: white, size: "60 30" },
+      { key: "EO4", color: white, size: "60 60" }
     ]);
 
     //// initialize the tall items Palette

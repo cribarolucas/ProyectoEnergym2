@@ -16,7 +16,7 @@
     </style>
 
     <script src="../../Scripts/GoJS/go-debug.js"></script>
-    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=2"></script>
+    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=4"></script>
 
     <div id="sample">
         <div class="container" style="width: 100%; white-space: nowrap;">
@@ -43,7 +43,8 @@
     <br/>
      <div class="col-sm-12 col-lg-12 text-center">
     <asp:Button ID="B_LIMPIAR" Text="Limpiar" CssClass="btn btn-info" runat="server"></asp:Button>
-    </div>
+    <br/>
+     </div>
     
 </asp:Content>
 

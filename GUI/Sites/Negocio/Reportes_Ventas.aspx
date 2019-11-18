@@ -40,9 +40,11 @@
             <asp:Button ID="B_ACEPTAR" Text="Aceptar" CssClass="btn btn-success" OnClientClick="return ValidarListar();" runat="server" />
         </div>
         <div class="col-sm-12 col-lg-12 text-center text-info">
+            <br/>
             <asp:Label ID="L_REP_CLI" Visible="false" runat="server" />
         </div>
         <div class="col-sm-12 col-lg-12 text-center text-info">
+            <br/>
             <asp:Label ID="L_REP_PROD" Visible="false" runat="server" />
         </div>
         <div class="col-sm-12 col-lg-12 text-center">
