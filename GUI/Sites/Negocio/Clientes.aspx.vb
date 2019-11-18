@@ -28,9 +28,16 @@ Public Class Clientes
                 mp.AgregarItemsMenuPorPermiso(_usuarioConectado.Perfil)
                 mp.Traducir(mp)
                 mp.Traducir(Me)
+                B_EXPORTE.Visible = True
+                B_EXPORTP.Visible = True
+            Else
+                B_EXPORTE.Visible = False
+                B_EXPORTP.Visible = False
             End If
             Me.BindData()
             Me.VerificarAccion()
+
+
         End If
     End Sub
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
@@ -176,6 +183,7 @@ Public Class Clientes
             B_EDIT_CLI.Visible = False
             B_LIMPIAR.Visible = False
             B_CLOSE_AC.Visible = False
+
         Else
             If accion = "Edit" Then
                 L_NOM_USU.Enabled = False
@@ -273,6 +281,7 @@ Public Class Clientes
     Protected Sub B_LIMPIAR_Click(sender As Object, e As EventArgs) Handles B_LIMPIAR.Click
         Dim mp As MasterPage = Me.Master
         mp.LimpiarCampos(Me)
+
     End Sub
 
     Private Sub TraducirControles()

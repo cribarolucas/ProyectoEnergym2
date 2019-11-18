@@ -36,19 +36,19 @@
             <div class="row">
                 <div class="d-flex justify-content-center">
                     <div class="pl-3 text-nowrap">
-                        <asp:Button ID="L_USER_CON" EnableTheming="false" Enabled="false" CssClass="btn btn-light" runat="server" />
+                        <asp:Button ID="L_USER_CON" EnableTheming="false" Enabled="false" CssClass="btn btn-light" runat="server" ForeColor="Black" />
                     </div>
                     <div class="pl-3 text-nowrap">
-                        <asp:Button ID="L_USU_LOG" EnableTheming="false" Enabled="false" CssClass="btn btn-light" runat="server" />
+                        <asp:Button ID="L_USU_LOG" EnableTheming="false" Enabled="false" CssClass="btn btn-light" runat="server" ForeColor="Black" />
                     </div>
                     <div class="pl-3 text-nowrap">
-                        <asp:Button ID="L_REGISTRO" ClientIDMode="Static" Text="Registrarse" CssClass="btn btn-link" runat="server" />
+                        <asp:Button ID="L_REGISTRO" ClientIDMode="Static" Text="Registrarse" CssClass="btn btn-link" runat="server" ForeColor="Black" />
                     </div>
                     <div class="pl-3 text-nowrap">
-                        <asp:Button ID="L_LOGIN" ClientIDMode="Static" Text="Iniciar sesión" CssClass="btn btn-link" runat="server" />
+                        <asp:Button ID="L_LOGIN" ClientIDMode="Static" Text="Iniciar sesión" CssClass="btn btn-link" runat="server" ForeColor="Black" />
                     </div>
                     <div class="pl-3 text-nowrap">
-                        <asp:Button ID="L_LOGOUT" ClientIDMode="Static" Text="Cerrar sesión" CssClass="btn btn-link" runat="server" />
+                        <asp:Button ID="L_LOGOUT" ClientIDMode="Static" Text="Cerrar sesión" CssClass="btn btn-link" runat="server" ForeColor="Black" />
                     </div>
                     
                     <div class="pl-3 text-nowrap">
@@ -78,7 +78,7 @@
                 <div>
                     <asp:Menu ID="MenuPrincipal" runat="server" Orientation="Horizontal" RenderingMode="Table"
                         IncludeStyleBlock="false" StaticMenuStyle-CssClass="nav navbar-nav"
-                        DynamicMenuStyle-CssClass="dropdown-menu" DynamicMenuItemStyle-ItemSpacing="8" StaticMenuItemStyle-ItemSpacing ="8" >
+                        DynamicMenuStyle-CssClass="dropdown-menu" DynamicMenuItemStyle-ItemSpacing="8" StaticMenuItemStyle-ItemSpacing ="8" ForeColor="Black">
 <DynamicMenuStyle CssClass="dropdown-menu"></DynamicMenuStyle>
                         <Items>
                             <asp:MenuItem NavigateUrl="~/Sites/Inicio.aspx" Text="Inicio" Value="M_INICIO"></asp:MenuItem>

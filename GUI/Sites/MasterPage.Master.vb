@@ -280,6 +280,7 @@
     End Sub
 
     Protected Sub L_REGISTRO_Click(sender As Object, e As EventArgs) Handles L_REGISTRO.Click
+
         Response.Redirect("~/Sites/Negocio/Clientes.aspx")
     End Sub
 

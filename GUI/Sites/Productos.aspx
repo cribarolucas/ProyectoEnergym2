@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="col-sm-12 col-lg-12 text-center">
-            <asp:DataList ID="dlProductos" RepeatDirection="Horizontal" RepeatColumns="5" OnItemCommand="dlProductos_ItemCommand"
+            <asp:DataList ID="dlProductos" RepeatDirection="Horizontal" RepeatColumns="2" OnItemCommand="dlProductos_ItemCommand"
                 OnItemDataBound="dlProductos_ItemDataBound" runat="server" CellSpacing="50">
                 <ItemTemplate>
                     <div class="col-sm-12 col-lg-12">
