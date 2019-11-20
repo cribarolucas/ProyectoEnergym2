@@ -34,6 +34,7 @@ Public Class Productos
                 L_ITEMS_V.Text = " " + BLL_CarritoCompras.ObtenerTotalItems(DirectCast(Session("CarritoCompras"), BE.BE_CarritoCompras).CarritoItems).ToString
             End If
         End If
+
     End Sub
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
         Dim mp As MasterPage = Me.Master

@@ -65,4 +65,17 @@ Public Class Diseñar_Espacio
     Protected Sub B_LIMPIAR_Click(sender As Object, e As EventArgs) Handles B_LIMPIAR.Click
         Response.Redirect("~/Sites/Cliente/Diseñar_Espacio.aspx")
     End Sub
+
+    Protected Sub ExportToImage(sender As Object, e As EventArgs) Handles B_EXPORTP.Click
+        Dim base64 As String = Request.Form(hfImageData.UniqueID).Split(",")(1)
+        Dim bytes As Byte() = Convert.FromBase64String(base64)
+        Response.Clear()
+        Response.ContentType = "image/png"
+        Response.AddHeader("Content-Disposition", "attachment; filename=HTML.png")
+        Response.Buffer = True
+        Response.Cache.SetCacheability(HttpCacheability.NoCache)
+        Response.BinaryWrite(bytes)
+        Response.End()
+    End Sub
+
 End Class

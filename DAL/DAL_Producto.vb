@@ -61,6 +61,66 @@ Public Class DAL_Producto
 
     End Function
 
+    Public Function ListarProductosG() As List(Of BE.BE_ProductoGrafico)
+        Dim productos As List(Of BE.BE_ProductoGrafico) = New List(Of BE.BE_ProductoGrafico)
+        Dim BE_Bitacora As BE.BE_Bitacora = New BE.BE_Bitacora
+        Dim DAL_Bitacora As DAL_Bitacora = New DAL_Bitacora
+        Dim producto As BE.BE_ProductoGrafico
+
+        Try
+
+            Dim tabla As DataTable = _dalAcceso.Leer("ProductoG_Listar")
+
+            For Each registro As DataRow In tabla.Rows
+
+                producto = New BE.BE_ProductoGrafico
+                producto.ID = Convert.ToInt32(registro("ID_P"))
+                producto.Nombre = registro("Nombre").ToString
+                producto.Precio = Convert.ToDecimal(registro("Precio"))
+                producto.FilePath = registro("FilePath")
+                producto.Color = "#FFBF00"
+                If Convert.ToDecimal(registro("Alto")) > Convert.ToDecimal(registro("Ancho")) Then
+                    producto.Tamaño = "30 60"
+                ElseIf Convert.ToDecimal(registro("Alto")) = Convert.ToDecimal(registro("Ancho")) Then
+                    producto.Tamaño = "30 30"
+                ElseIf Convert.ToDecimal(registro("Alto")) < Convert.ToDecimal(registro("Ancho")) Then
+                    producto.Tamaño = "60 30"
+
+                End If
+
+                productos.Add(producto)
+
+            Next
+
+        Catch ex2 As ArgumentNullException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Cadena de conexión inválida: " & ex2.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex1 As SqlClient.SqlException
+
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex1.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        Catch ex As Exception
+            BE_Bitacora.FechaHora = DateTime.Now
+            BE_Bitacora.Usuario = _usuarioActual
+            BE_Bitacora.Descripcion = "Error al listar todos los productos: " & ex.ToString()
+            BE_Bitacora.EsError = True
+            DAL_Bitacora.ActualizarBitacora(BE_Bitacora)
+
+        End Try
+
+        Return productos
+
+    End Function
+
     Public Function ListarMuscuMin() As List(Of BE.BE_Producto)
         Dim productos As List(Of BE.BE_Producto) = New List(Of BE.BE_Producto)
         Dim BE_Bitacora As BE.BE_Bitacora = New BE.BE_Bitacora

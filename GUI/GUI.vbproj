@@ -291,6 +291,7 @@
     <Content Include="Sites\Cliente\Calcular_Maquinas.aspx" />
     <Content Include="Sites\Cliente\Cambiar_Contraseña.aspx" />
     <Content Include="Sites\Cliente\Diseñar_Espacio.aspx" />
+    <Content Include="Sites\Cliente\Maquinas.aspx" />
     <Content Include="Sites\Contacto.aspx" />
     <Content Include="Sites\Inicio.aspx" />
     <Content Include="Sites\Mantenimiento.aspx" />
@@ -352,6 +353,13 @@
     <Compile Include="Sites\Cliente\Diseñar_Espacio.aspx.vb">
       <DependentUpon>Diseñar_Espacio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\Cliente\Maquinas.aspx.designer.vb">
+      <DependentUpon>Maquinas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Cliente\Maquinas.aspx.vb">
+      <DependentUpon>Maquinas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Sites\Contacto.aspx.designer.vb">
       <DependentUpon>Contacto.aspx</DependentUpon>

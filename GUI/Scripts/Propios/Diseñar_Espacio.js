@@ -167,9 +167,24 @@ function init() {
             layout: $(go.GridLayout)
         });
     var orange = '#FFBF00';
+    //llamada ajax
+
+    //jQuery.ajax({
+    //    type: "GET",
+    //    url: "Maquinas.aspx/Test",
+    //    contentType: "application/json; charset=utf-8",
+    //    success: function (data) {
+    //        alert(data.d.key);
+    //    },
+    //    error: function (data) {
+    //        alert('failed');
+    //    }
+    //});
+
+
     // especificar el contenido de la paleta
     myPaletteProducts.model = new go.GraphLinksModel([
-        { key: "Hom", color: orange, size: "30 30" },
+        { text: "sarasa", key: "Hom", color: orange, size: "30 30" },
         { key: "Dor", color: orange, size: "30 30" },
         { key: "Bice", color: orange, size: "60 30" },
         { key: "Pec", color: orange, size: "60 30" },

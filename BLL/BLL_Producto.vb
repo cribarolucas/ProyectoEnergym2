@@ -5,6 +5,12 @@ Public Class BLL_Producto
         Return _dalProducto.ListarProductos()
     End Function
 
+    Public Function ListarProductosG() As List(Of BE.BE_ProductoGrafico)
+        Dim pgs As New List(Of BE.BE_ProductoGrafico)
+        pgs = _dalProducto.ListarProductosG
+        Return pgs
+    End Function
+
     Public Function MuscuMin() As Decimal
         Dim productos As New List(Of BE.BE_Producto)
         productos = _dalProducto.ListarMuscuMin

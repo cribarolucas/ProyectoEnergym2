@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Diseñar_Espacio.aspx.vb" Inherits="GUI.Diseñar_Espacio" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Diseñar_Espacio.aspx.vb" Inherits="GUI.Diseñar_Espacio" 
+EnableEventValidation = "false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -9,14 +10,15 @@
     <script src="../../Scripts/GoJS/jquery.min.js"></script>
     <script src="../../Scripts/GoJS/jquery-ui.min.js"></script>
 
+
+
     <style type="text/css">
         .ui-accordion .ui-accordion-content {
             padding: 1px;
         }
     </style>
-
     <script src="../../Scripts/GoJS/go-debug.js"></script>
-    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=4"></script>
+    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=1"></script>
 
     <div id="sample">
         <div class="container" style="width: 100%; white-space: nowrap;">
@@ -43,7 +45,11 @@
     <br/>
      <div class="col-sm-12 col-lg-12 text-center">
     <asp:Button ID="B_LIMPIAR" Text="Limpiar" CssClass="btn btn-info" runat="server"></asp:Button>
-    <br/>
+    <asp:HiddenField ID="hfImageData" runat="server" />
+         <asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-warning" runat="server" UseSubmitBehavior="false"
+    OnClick="ExportToImage"></asp:Button>
+         <br/>
+
      </div>
     
 </asp:Content>

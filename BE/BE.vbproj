@@ -110,6 +110,7 @@
     <Compile Include="BE_Idioma.vb" />
     <Compile Include="BE_Leyenda.vb" />
     <Compile Include="BE_SesionActual.vb" />
+    <Compile Include="BE_ProductoGrafico.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
