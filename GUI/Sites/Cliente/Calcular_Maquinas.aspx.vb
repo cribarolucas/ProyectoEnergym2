@@ -15,7 +15,9 @@ Public Class Calcular_Maquinas
     Private _bllProducto As BLL.BLL_Producto = New BLL.BLL_Producto
     Private _bllStock As BLL.BLL_Stock = New BLL.BLL_Stock
     Private _segIdioma As Seguridad.SEG_Idioma = New Seguridad.SEG_Idioma
+    Dim productos4 As New List(Of BE.BE_Producto)
     Dim productos2 As New List(Of BE.BE_Producto)
+    Dim productos3 As New List(Of BE.BE_Producto)
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         _usuarioConectado = Session("Usuario_Conectado")
         If Not IsPostBack Then
@@ -73,20 +75,24 @@ Public Class Calcular_Maquinas
 
     End Sub
     Private Sub BindData()
-        'Session.Remove("Productos2")
 
+        gvProductos2.DataSource = DirectCast(Session("Productos3"), List(Of BE.BE_Producto))
+        gvProductos2.DataBind()
         gvProductos.DataSource = DirectCast(Session("Productos2"), List(Of BE.BE_Producto))
         gvProductos.DataBind()
     End Sub
     Protected Sub OnSelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles gvProductos.SelectedIndexChanged
 
         gvProductos.SelectedRow.BackColor = Color.DeepSkyBlue
+        gvProductos2.SelectedRow.BackColor = Color.DeepSkyBlue
         lblError.Text = ""
         lblMensaje.Text = ""
     End Sub
     Private Sub LimpiarCampos()
         Dim mp As MasterPage = Me.Master
         mp.LimpiarCampos(Me)
+        gvProductos2.DataSource = Nothing
+        gvProductos2.DataBind()
         gvProductos.DataSource = Nothing
         gvProductos.DataBind()
         lblMensaje.Text = ""
@@ -94,6 +100,13 @@ Public Class Calcular_Maquinas
     End Sub
     Private Sub RestablecerColorFilasGrid()
         For Each row As GridViewRow In gvProductos.Rows
+            If row.RowIndex Mod 2 <> 0 Then
+                row.BackColor = Drawing.Color.LightBlue
+            Else
+                row.BackColor = Drawing.Color.White
+            End If
+        Next
+        For Each row As GridViewRow In gvProductos2.Rows
             If row.RowIndex Mod 2 <> 0 Then
                 row.BackColor = Drawing.Color.LightBlue
             Else
@@ -113,13 +126,34 @@ Public Class Calcular_Maquinas
 
         End If
 
+        If gvProductos2.Rows.Count > 0 Then
+            gvProductos2.HeaderRow.Cells(0).Text = _segIdioma.TraducirControl("C_ID", _usuarioConectado.Idioma)
+            gvProductos2.HeaderRow.Cells(1).Text = _segIdioma.TraducirControl("C_NOMBRE", _usuarioConectado.Idioma)
+            gvProductos2.HeaderRow.Cells(2).Text = _segIdioma.TraducirControl("C_DETAIL", _usuarioConectado.Idioma)
+            gvProductos2.HeaderRow.Cells(3).Text = _segIdioma.TraducirControl("C_PRECIO", _usuarioConectado.Idioma)
+
+            gvProductos2.Caption = _segIdioma.TraducirControl("T_PRODUC", _usuarioConectado.Idioma)
+            gvProductos2.EmptyDataText = _segIdioma.TraducirControl("L_EDT_PROD", _usuarioConectado.Idioma)
+
+        End If
+
     End Sub
     Protected Sub OnPaging(ByVal sender As Object, ByVal e As GridViewPageEventArgs)
         gvProductos.PageIndex = e.NewPageIndex
+        gvProductos2.PageIndex = e.NewPageIndex
         Me.BindData()
     End Sub
 
     Protected Sub gvProductos_RowDataBound(sender As Object, e As GridViewRowEventArgs)
+        If (e.Row.RowType = DataControlRowType.DataRow) Then
+            Dim culture As CultureInfo = New CultureInfo("es-AR")
+            Dim lblPrecio As Label = DirectCast(e.Row.FindControl("lblPrecio"), Label)
+            Dim precio As Decimal = Convert.ToDecimal(lblPrecio.Text)
+            lblPrecio.Text = precio.ToString("C", culture)
+        End If
+    End Sub
+
+    Protected Sub gvProductos2_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If (e.Row.RowType = DataControlRowType.DataRow) Then
             Dim culture As CultureInfo = New CultureInfo("es-AR")
             Dim lblPrecio As Label = DirectCast(e.Row.FindControl("lblPrecio"), Label)
@@ -234,11 +268,19 @@ Public Class Calcular_Maquinas
         End If
 
         productos2 = DirectCast(productos.GroupBy(Function(item) item.ID).Select(Function(group) New BE.BE_Producto With {.ID = group.Key, .Nombre = group.First.Nombre, .Detalle = group.First.Detalle, .Precio = group.First.Precio, .Cantidad = group.Count(Function(item) item.ID)}).ToList(), List(Of BE.BE_Producto))
+        productos3 = DirectCast(productos.GroupBy(Function(item) item.ID).Select(Function(group) New BE.BE_Producto With {.ID = group.Key, .Nombre = group.First.Nombre, .Detalle = group.First.Detalle, .Precio = group.First.Precio, .FilePathThumbnail = group.First.FilePathThumbnail, .Cantidad = group.Count(Function(item) item.ID)}).ToList(), List(Of BE.BE_Producto))
+        productos4 = _bllProducto.ListarProductos
+
+        For Each p As BE.BE_Producto In productos3
+
+            p.FilePathThumbnail = productos4.Find(Function(x) x.ID = p.ID).FilePathThumbnail
+        Next
+
 
         Dim invertido As New Decimal
         invertido = montoInicial - monto
 
-
+        Session.Add("Productos3", productos3)
         Session.Add("Productos2", productos2)
         Me.BindData()
         lblMensaje.Text = "El monto invertido es de " & invertido & " y el monto devuelto es de " & monto
@@ -254,10 +296,12 @@ Public Class Calcular_Maquinas
         Using sw As New StringWriter()
             Using hw As New HtmlTextWriter(sw)
                 'To Export all pages
-                gvProductos.AllowPaging = False
+                gvProductos2.Columns.RemoveAt(4)
+                gvProductos2.AllowPaging = False
                 Me.BindData()
 
-                gvProductos.RenderControl(hw)
+                gvProductos2.RenderControl(hw)
+
                 Dim sr As New StringReader(sw.ToString())
                 Dim pdfDoc As New Document(PageSize.A2, 10.0F, 10.0F, 10.0F, 0.0F)
                 Dim htmlparser As New HTMLWorker(pdfDoc)
@@ -285,25 +329,26 @@ Public Class Calcular_Maquinas
 
         Dim sw As New StringWriter()
         Dim hw As New HtmlTextWriter(sw)
-        gvProductos.AllowPaging = False
+        gvProductos2.AllowPaging = False
         Me.BindData()
         'gvProductos.DataBind()
 
         'Change the Header Row back to white color
 
-        gvProductos.HeaderRow.Style.Add("background-color", "#FFFFFF")
+        gvProductos2.HeaderRow.Style.Add("background-color", "#FFFFFF")
 
         'Apply style to Individual Cells
 
-        gvProductos.HeaderRow.Cells(0).Style.Add("background-color", "green")
-        gvProductos.HeaderRow.Cells(1).Style.Add("background-color", "green")
-        gvProductos.HeaderRow.Cells(2).Style.Add("background-color", "green")
-        gvProductos.HeaderRow.Cells(3).Style.Add("background-color", "green")
-        gvProductos.HeaderRow.Cells(4).Style.Add("background-color", "green")
+        gvProductos2.HeaderRow.Cells(0).Style.Add("background-color", "green")
+        gvProductos2.HeaderRow.Cells(1).Style.Add("background-color", "green")
+        gvProductos2.HeaderRow.Cells(2).Style.Add("background-color", "green")
+        gvProductos2.HeaderRow.Cells(3).Style.Add("background-color", "green")
+        gvProductos2.HeaderRow.Cells(4).Style.Add("background-color", "green")
+        gvProductos2.HeaderRow.Cells(5).Style.Add("background-color", "green")
 
-        For i As Integer = 0 To gvProductos.Rows.Count - 1
+        For i As Integer = 0 To gvProductos2.Rows.Count - 1
 
-            Dim row As GridViewRow = gvProductos.Rows(i)
+            Dim row As GridViewRow = gvProductos2.Rows(i)
             'Change Color back to white
             row.BackColor = System.Drawing.Color.White
 
@@ -319,10 +364,11 @@ Public Class Calcular_Maquinas
                 row.Cells(2).Style.Add("background-color", "#C2D69B")
                 row.Cells(3).Style.Add("background-color", "#C2D69B")
                 row.Cells(4).Style.Add("background-color", "#C2D69B")
+                row.Cells(5).Style.Add("background-color", "#C2D69B")
             End If
         Next
 
-        gvProductos.RenderControl(hw)
+        gvProductos2.RenderControl(hw)
 
         'style to format numbers to string
 

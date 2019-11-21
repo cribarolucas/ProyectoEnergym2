@@ -50,13 +50,13 @@ Partial Public Class Calcular_Maquinas
     Protected WithEvents RBList As Global.System.Web.UI.WebControls.RadioButtonList
     
     '''<summary>
-    '''Control gvProductos.
+    '''Control gvProductos2.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents gvProductos As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents gvProductos2 As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
     '''Control lblError.
@@ -111,4 +111,13 @@ Partial Public Class Calcular_Maquinas
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents B_EXPORTE As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control gvProductos.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gvProductos As Global.System.Web.UI.WebControls.GridView
 End Class
