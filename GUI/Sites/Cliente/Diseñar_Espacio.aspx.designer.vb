@@ -50,15 +50,6 @@ Partial Public Class Diseñar_Espacio
     Protected WithEvents B_LIMPIAR As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control hfImageData.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents hfImageData As Global.System.Web.UI.WebControls.HiddenField
-    
-    '''<summary>
     '''Control B_EXPORTP.
     '''</summary>
     '''<remarks>
@@ -66,4 +57,22 @@ Partial Public Class Diseñar_Espacio
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents B_EXPORTP As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control B_ACEPTAR.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents B_ACEPTAR As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control hf_producto.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents hf_producto As Global.System.Web.UI.WebControls.HiddenField
 End Class

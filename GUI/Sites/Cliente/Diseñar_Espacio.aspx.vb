@@ -1,4 +1,8 @@
-﻿Imports System.Web.Script.Serialization
+﻿
+Imports System.Web.Script.Serialization
+Imports Newtonsoft.Json
+Imports IronPdf
+
 Public Class Diseñar_Espacio
     Inherits System.Web.UI.Page
     Private _usuarioConectado As BE.BE_Usuario
@@ -41,7 +45,7 @@ Public Class Diseñar_Espacio
             Dim idioma As BE.BE_Idioma = New BE.BE_Idioma
             idioma.Codigo = DirectCast(ddl.SelectedValue, String)
             idioma.Nombre = DirectCast(ddl.Items(ddl.SelectedIndex).Text, String)
-            idioma.Leyendas = DirectCast(Application("Idiomas"),  _
+            idioma.Leyendas = DirectCast(Application("Idiomas"),
                                 List(Of BE.BE_Idioma)).Find(Function(x) x.Codigo = idioma.Codigo).Leyendas
             Session.Remove("Idioma_Actual")
             Session.Add("Idioma_Actual", idioma)
@@ -66,16 +70,19 @@ Public Class Diseñar_Espacio
         Response.Redirect("~/Sites/Cliente/Diseñar_Espacio.aspx")
     End Sub
 
-    Protected Sub ExportToImage(sender As Object, e As EventArgs) Handles B_EXPORTP.Click
-        Dim base64 As String = Request.Form(hfImageData.UniqueID).Split(",")(1)
-        Dim bytes As Byte() = Convert.FromBase64String(base64)
-        Response.Clear()
-        Response.ContentType = "image/png"
-        Response.AddHeader("Content-Disposition", "attachment; filename=HTML.png")
-        Response.Buffer = True
-        Response.Cache.SetCacheability(HttpCacheability.NoCache)
-        Response.BinaryWrite(bytes)
-        Response.End()
+
+    Protected Sub asdf_Click(sender As Object, e As EventArgs) Handles B_ACEPTAR.Click
+        Dim Productos As List(Of BE.BE_Item) = JsonConvert.DeserializeObject(Of List(Of BE.BE_Item))(hf_producto.Value)
+
+        'IronPdf.AspxToPdf.RenderThisPageAsPdf()
+        Dim PdfOptions As New PdfPrintOptions
+        PdfOptions.DPI = 300
+        PdfOptions.EnableJavaScript = False
+
+        AspxToPdf.RenderThisPageAsPdf(AspxToPdf.FileBehavior.Attachment, "MyPdfFile.pdf", PdfOptions)
+
     End Sub
+
+
 
 End Class

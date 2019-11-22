@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Diseñar_Espacio.aspx.vb" Inherits="GUI.Diseñar_Espacio" 
-EnableEventValidation = "false" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Sites/MasterPage.Master" CodeBehind="Diseñar_Espacio.aspx.vb" Inherits="GUI.Diseñar_Espacio" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -9,7 +8,7 @@ EnableEventValidation = "false" %>
     <link rel="stylesheet" href="../../Estilos/jquery-ui.min.css" />
     <script src="../../Scripts/GoJS/jquery.min.js"></script>
     <script src="../../Scripts/GoJS/jquery-ui.min.js"></script>
-
+  
 
 
     <style type="text/css">
@@ -18,7 +17,8 @@ EnableEventValidation = "false" %>
         }
     </style>
     <script src="../../Scripts/GoJS/go-debug.js"></script>
-    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=1"></script>
+    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=5"></script>
+    
 
     <div id="sample">
         <div class="container" style="width: 100%; white-space: nowrap;">
@@ -31,27 +31,34 @@ EnableEventValidation = "false" %>
                 <div>
                     <div id="myPaletteOS" style="width: 140px; height: 360px"></div>
                 </div>
+                <div id="myProductInfo"></div>                
             </div>
             <div class="col-sm-8 col-lg-8">
                 <div id="myDiagramDiv" style="border: solid 1px black; height: 550px; width: 750px "></div>
             </div>
+            <div class="col-sm-12 col-lg-12" style="text-align:center; padding-top:1rem;">
+                   <button type="button" class="btn-test btn btn-success">Calcular</button> 
+            </div>
         </div>
 
     </div>
+   
+
     <script>
         window.onload = init();
     </script>
-    <br/>
-    <br/>
+ 
      <div class="col-sm-12 col-lg-12 text-center">
+
     <asp:Button ID="B_LIMPIAR" Text="Limpiar" CssClass="btn btn-info" runat="server"></asp:Button>
-    <asp:HiddenField ID="hfImageData" runat="server" />
-         <asp:Button ID="B_EXPORTP" Text="Exportar a PDF" CssClass="btn btn-warning" runat="server" UseSubmitBehavior="false"
-    OnClick="ExportToImage"></asp:Button>
+        <asp:Button ID="B_EXPORTP" Text="Exportar" CssClass="btn btn-danger" runat="server" OnClientClick="return imprimir();"></asp:Button>
+    <asp:button id="B_ACEPTAR" class="btn btn-test" runat="server" OnClick="asdf_Click" OnClientClick="return calcular();" Text="Aceptar" style="display:none;"></asp:button>
+    
+         
          <br/>
 
      </div>
-    
+    <asp:HiddenField ID="hf_producto" runat="server" Value="" />
 </asp:Content>
 
 

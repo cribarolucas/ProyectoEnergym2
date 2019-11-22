@@ -78,6 +78,7 @@
     <Compile Include="BE_FacturaDetalle.vb" />
     <Compile Include="BE_GrupoPermiso.vb" />
     <Compile Include="BE_CarritoItem.vb" />
+    <Compile Include="BE_Item.vb" />
     <Compile Include="BE_IVA.vb" />
     <Compile Include="BE_Localidad.vb" />
     <Compile Include="BE_OrdenProduccion.vb" />

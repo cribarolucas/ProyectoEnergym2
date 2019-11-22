@@ -4,6 +4,25 @@ var CellSize = new go.Size(30, 30);
 
 //window.onload = init();
 
+var productos_1 = [];
+
+function calcular() {
+    $('#CPH_hf_producto').val(JSON.stringify(productos_1));
+    console.log(productos_1);
+    return true;
+    }
+
+function hola() {
+    __doPostBack('<%= B_ACEPTAR.UniqueID %>', '');
+    $('#CPH_B_ACEPTAR').click();
+   
+}
+
+function imprimir() {
+    window.print();
+    return false;
+
+}
 function init() {
     var $ = go.GraphObject.make;
     myDiagram =
@@ -47,8 +66,36 @@ function init() {
             },
             mouseDrop: function (e, node) {  // no permitir dejar caer nada sobre un "elemento"
                 node.diagram.currentTool.doCancel();
+            },
+            click: function (e, node) {  // no permitir dejar caer nada sobre un "elemento"
+                console.log(e, node);
+                var productData = node.part.data;
+                var infoElement = document.getElementById('myProductInfo');
+
+                jQuery(infoElement).empty();
+
+                if (productData.type === 'space') {
+                    return;
+                }
+
+
+                
+                jQuery(infoElement).html(`
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img style="width: 150px;" src="${productData.img.substring(1)}"/>
+                        </div>
+                        <div class ="col-md-6">
+                            <h5><b>${productData.name}</b></h5>
+                            <p><strong>Precio</strong>: $ ${productData.price}</p>
+                        </div>
+                    </div>
+
+                `);
             }
         },
+
+ 
         // siempre guarde / cargue el punto que es la esquina superior izquierda del nodo, no la ubicación
         new go.Binding("position", "pos", go.Point.parse).makeTwoWay(go.Point.stringify),
         // esto es lo principal que la gente ve
@@ -66,6 +113,12 @@ function init() {
           { alignment: go.Spot.Center, font: 'bold 16px sans-serif' },
           new go.Binding("text", "key"))
       );  // fin del nodo
+
+    myDiagram.addDiagramListener('ObjectSingleClicked', function (e, node) {
+        console.log(e);
+        console.log('asdfasdfasdfsd', node);
+    });
+
     // Los grupos representan bastidores donde se pueden colocar elementos (nodos).
     // Actualmente son móviles y redimensionables, pero puedes cambiar eso
     // si desea que los bastidores permanezcan "fixed".
@@ -146,10 +199,10 @@ function init() {
     };
     // comenzar con cuatro "bastidores" que se colocan uno al lado del otro
     myDiagram.model = new go.GraphLinksModel([
-    { key: "G1", isGroup: true, pos: "0 0", size: "330 270" },
-    { key: "G2", isGroup: true, pos: "330 0", size: "330 270" },
-    { key: "G3", isGroup: true, pos: "0 270", size: "330 270" },
-    { key: "G4", isGroup: true, pos: "330 270", size: "330 270" }
+    { key: "G1", isGroup: true, pos: "0 0", size: "330 270", type: 'group' },
+    { key: "G2", isGroup: true, pos: "330 0", size: "330 270", type: 'group' },
+    { key: "G3", isGroup: true, pos: "0 270", size: "330 270", type: 'group' },
+    { key: "G4", isGroup: true, pos: "330 270", size: "330 270", type: 'group' }
     ]);
     // this sample does not make use of any links
     jQuery("#accordion").accordion({
@@ -169,29 +222,48 @@ function init() {
     var orange = '#FFBF00';
     //llamada ajax
 
-    //jQuery.ajax({
-    //    type: "GET",
-    //    url: "Maquinas.aspx/Test",
-    //    contentType: "application/json; charset=utf-8",
-    //    success: function (data) {
-    //        alert(data.d.key);
-    //    },
-    //    error: function (data) {
-    //        alert('failed');
-    //    }
-    //});
+    jQuery.ajax({
+        type: "GET",
+        url: "Maquinas.aspx/Test",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            var productosLista = JSON.parse(data.d).data;
+            console.log(productosLista);
+            var productosGoJs = productosLista.map(producto => {
+                return {
+                    id: producto.ID,
+                    name: producto.Nombre,
+                    price: producto.Precio,
+                    img: producto.FilePath,
+                    size: producto.Tamaño,
+                    color: producto.Color,
+                    key: producto.Nombre.substring(0, 3),
+                    type: 'product',
+                    click: function(e) {
+                        console.log('asdf', e)
+                        console.log('asdf', JSON.stringify(e))
+                    }
+                }
+            });
+            console.log(productosGoJs);
+            myPaletteProducts.model = new go.GraphLinksModel(productosGoJs);     
+        },
+        error: function (data) {
+            alert('failed');
+        }
+    });
 
 
     // especificar el contenido de la paleta
-    myPaletteProducts.model = new go.GraphLinksModel([
-        { text: "sarasa", key: "Hom", color: orange, size: "30 30" },
-        { key: "Dor", color: orange, size: "30 30" },
-        { key: "Bice", color: orange, size: "60 30" },
-        { key: "Pec", color: orange, size: "60 30" },
-        { key: "Bici", color: orange, size: "30 60" },
-        { key: "Cin", color: orange, size: "30 90" },
-        { key: "Pie", color: orange, size: "30 60" }
-    ]);
+    //myPaletteProducts.model = new go.GraphLinksModel([
+    //    { key: "Hom", color: orange, size: "30 30" },
+    //    { key: "Dor", color: orange, size: "30 30" },
+    //    { key: "Bice", color: orange, size: "60 30" },
+    //    { key: "Pec", color: orange, size: "60 30" },
+    //    { key: "Bici", color: orange, size: "30 60" },
+    //    { key: "Cin", color: orange, size: "30 90" },
+    //    { key: "Pie", color: orange, size: "30 60" }
+    //]);
 
     // inicializar la paleta de productos
     myPaletteOS =
@@ -204,10 +276,10 @@ function init() {
     var white = '#FFFFFF';
     // especificar los contenidos de las paletas
     myPaletteOS.model = new go.GraphLinksModel([
-      { key: "EO1", color: white },
-      { key: "EO2", color: white, size: "30 60" },
-      { key: "EO3", color: white, size: "60 30" },
-      { key: "EO4", color: white, size: "60 60" }
+      { key: "EO1", color: white, type: 'space' },
+      { key: "EO2", color: white, size: "30 60", type: 'space' },
+      { key: "EO3", color: white, size: "60 30", type: 'space' },
+      { key: "EO4", color: white, size: "60 60", type: 'space' }
     ]);
 
     //// initialize the tall items Palette
@@ -248,4 +320,49 @@ function init() {
     //myPaletteBig.model = new go.GraphLinksModel([
     //  { key: "EO", color: red, size: "60 60" }
     //]);
+
+    jQuery('.btn-test').click(function (e) {
+        e.preventDefault();
+        console.log('asdfasdf', myDiagram.model.nodeDataArray);
+        var productos = myDiagram.model.nodeDataArray.filter(node => node.type === 'product')
+        var productosQuantity = productos.reduce((acum, curr) => {
+            if (!acum[curr.id]) {
+                acum[curr.id] = 0
+            }
+            acum[curr.id]++
+            return acum;
+        }, {});
+        productos_1 = Object.keys(productosQuantity).map(key => {
+            return {
+                ID: key,
+                Cantidad: productosQuantity[key]
+            }
+        });
+        console.log(productos);
+        hola();
+
+
+        //$('#CPH_hf_producto').val("hola");
+        //console.log(productos);
+
+        //jQuery.ajax({
+        //    type: "POST",
+        //    dataType: "json",
+        //    headers: {
+        //        "Accept": "*/*",
+        //        "Content-Type": "applicationjson; charset=utf-8",
+        //        "X-Requested-With": "XMLHttpRequest"
+        //    }, //'codigocliente':'" + codigocliente + "'
+        //    url: "http://localhost:2646/Webservices/maquinas.asmx/GenerarPedido",
+        //    data: { 'JsonProductos':'hola' },
+        //      success: function (response) {
+        //       console.log('success', response)
+        //    },
+        //    error: function (data) {
+        //        alert('failed');
+        //    }
+        //});
+    });
 }
+
+

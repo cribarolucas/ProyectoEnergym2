@@ -51,12 +51,19 @@
     <Reference Include="DropDownListChosen">
       <HintPath>..\packages\DropDownListChosen.1.0.1\lib\DropDownListChosen.dll</HintPath>
     </Reference>
+    <Reference Include="IronPdf">
+      <HintPath>Scripts\Propios\IronPdf.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itextsharp.xmlworker.5.5.13\lib\itextsharp.xmlworker.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -75,6 +82,18 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Wisej.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=17bef35e11b84171, processorArchitecture=MSIL">
+      <HintPath>..\packages\Wisej.1.5.58\lib\net45\Wisej.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Wisej.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=17bef35e11b84171, processorArchitecture=MSIL">
+      <HintPath>..\packages\Wisej.1.5.58\lib\net45\Wisej.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Wisej.Web.Ext.Html2Canvas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Wisej-Html2Canvas.1.5.58\lib\net45\Wisej.Web.Ext.Html2Canvas.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -261,6 +280,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
+    <Content Include="WebServices\Maquinas.asmx" />
     <None Include="Scripts\JQuery\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\JQuery\chosen.jquery.js" />
     <Content Include="Scripts\JQuery\jquery-ui-1.12.1.js" />
@@ -547,6 +567,10 @@
     <Compile Include="Sites\Sistema\Usuarios.aspx.vb">
       <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="WebServices\Maquinas.asmx.vb">
+      <DependentUpon>Maquinas.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
