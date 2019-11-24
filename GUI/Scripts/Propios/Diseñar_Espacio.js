@@ -5,6 +5,7 @@ var CellSize = new go.Size(30, 30);
 //window.onload = init();
 
 var productos_1 = [];
+var productosGoJs = [];
 
 function calcular() {
     $('#CPH_hf_producto').val(JSON.stringify(productos_1));
@@ -16,6 +17,19 @@ function hola() {
     __doPostBack('<%= B_ACEPTAR.UniqueID %>', '');
     $('#CPH_B_ACEPTAR').click();
    
+}
+
+
+function getRandomColor(index) {
+    var colors = ["green", "red", "yellow", "orange", "pink", "blue", "brown", "grey", "purple", "violet"];
+    return colors[index];
+
+    //var letters = '0123456789ABCDEF';
+    //var color = '#';
+    //for (var i = 0; i < 6; i++) {
+    //    color += letters[Math.floor(Math.random() * 16)];
+    //}
+    //return color;
 }
 
 function imprimir() {
@@ -77,8 +91,6 @@ function init() {
             },
             mouseDrop: function (e, node) {  // no permitir dejar caer nada sobre un "elemento"
                 node.diagram.currentTool.doCancel();
-
-
             },
             click: function (e, node) {  // no permitir dejar caer nada sobre un "elemento"
                 console.log(e, node);
@@ -242,14 +254,14 @@ function init() {
         success: function (data) {
             var productosLista = JSON.parse(data.d).data;
             console.log(productosLista);
-            var productosGoJs = productosLista.map(producto => {
+             productosGoJs = productosLista.map((producto, index) => {
                 return {
                     id: producto.ID,
                     name: producto.Nombre,
                     price: producto.Precio,
                     img: producto.FilePath,
                     size: producto.Tamaño,
-                    color: producto.Color,
+                    color: getRandomColor(index),
                     key: producto.Nombre.substring(0, 3),
                     type: 'product',
                     click: function(e) {
@@ -267,16 +279,6 @@ function init() {
     });
 
 
-    // especificar el contenido de la paleta
-    //myPaletteProducts.model = new go.GraphLinksModel([
-    //    { key: "Hom", color: orange, size: "30 30" },
-    //    { key: "Dor", color: orange, size: "30 30" },
-    //    { key: "Bice", color: orange, size: "60 30" },
-    //    { key: "Pec", color: orange, size: "60 30" },
-    //    { key: "Bici", color: orange, size: "30 60" },
-    //    { key: "Cin", color: orange, size: "30 90" },
-    //    { key: "Pie", color: orange, size: "30 60" }
-    //]);
 
     // inicializar la paleta de productos
     myPaletteOS =
@@ -375,6 +377,37 @@ function init() {
         //        alert('failed');
         //    }
         //});
+    });
+
+    jQuery('.btn-calcular').click(function (e) {
+        e.preventDefault();
+        console.log('asdfasdf', myDiagram.model.nodeDataArray);
+        var productos = myDiagram.model.nodeDataArray.filter(node => node.type === 'product')
+        var productosQuantity = productos.reduce((acum, curr) => {
+            if (!acum[curr.id]) {
+                acum[curr.id] = 0
+            }
+            acum[curr.id]++
+            return acum;
+        }, {});
+        productos_1 = Object.keys(productosQuantity).map(key => {
+            return {
+                ID: key,
+                Cantidad: productosQuantity[key]
+            }
+        });
+        console.log(productos);
+        var acum = 0;
+        console.log(productosGoJs);
+        productos_1.forEach(producto => {
+            console.log(producto);
+
+            var productoGoJs = productosGoJs.find(p => p.id == producto.ID)
+            acum += productoGoJs.price * producto.Cantidad;
+
+        });
+        jQuery("#lblMensaje").text("Su monto parcial es $" + acum.toFixed(2));
+        jQuery("#lblMensaje").css("color", "green")
     });
 }
 

@@ -39,7 +39,8 @@
                 <br/>
             </div>
             <div class="col-sm-12 col-lg-12" style="text-align:center; padding-top:1rem;">
-                   <button type="button" class="btn-test btn btn-success">Realizar Pedido</button> 
+                   <button type="button" class="btn-test btn btn-success">Realizar Pedido</button>
+                <button type="button" class="btn-calcular btn btn-success">Calcular Subtotal</button>  
                    <br />
               
             </div>
@@ -62,7 +63,8 @@
     <asp:Button ID="B_LIMPIAR" Text="Limpiar" CssClass="btn btn-info" runat="server"></asp:Button>
         <asp:Button ID="B_IMPRIMIR" Text="Imprimir" CssClass="btn btn-danger" runat="server" OnClientClick="return imprimir();"></asp:Button>
          <%--<asp:Button ID="B_EXPORTP" Text="Exportar" CssClass="btn btn-danger" runat="server" OnClientClick="return exportar();" style="display:none;"></asp:Button>--%>
-    <asp:button id="B_ACEPTAR" class="btn btn-test" runat="server" OnClick="asdf_Click" OnClientClick="return calcular();" Text="Aceptar" style="display:none;"></asp:button>
+    <asp:button id="B_ACEPTAR"  runat="server" OnClick="asdf_Click" OnClientClick="return calcular();" Text="Aceptar" style="display:none;"></asp:button>
+
     <br/>
          
          <br/>

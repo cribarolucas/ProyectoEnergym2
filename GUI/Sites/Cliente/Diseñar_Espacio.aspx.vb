@@ -27,6 +27,11 @@ Public Class Diseñar_Espacio
                 mp.Traducir(mp)
                 mp.Traducir(Me)
             End If
+            lblError.Text = ""
+            lblMensaje.Text = ""
+        Else
+            lblError.Text = ""
+            lblMensaje.Text = ""
         End If
     End Sub
 
@@ -146,12 +151,13 @@ Public Class Diseñar_Espacio
             BLL_PedidoDetalle.GenerarPedidoDetalle(pedido) Then
             lblError.Text = _segIdioma.TraducirControl("MS_023", Session("Idioma_Actual"))
             lblError.ForeColor = Drawing.Color.Green
-            lblMensaje.Text = "El monto total es de " & pedido.PrecioTotal
+            lblMensaje.Text = "El monto total es de $" & pedido.PrecioTotal
             lblMensaje.ForeColor = Drawing.Color.Green
         Else
             lblError.Text = _segIdioma.TraducirControl("ME_068", Session("Idioma_Actual"))
             lblError.ForeColor = Drawing.Color.Red
         End If
     End Sub
+
 
 End Class
