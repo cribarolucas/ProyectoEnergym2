@@ -17,7 +17,7 @@
         }
     </style>
     <script src="../../Scripts/GoJS/go-debug.js"></script>
-    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=2"></script>
+    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=3"></script>
     
 
     <div id="sample">

@@ -406,7 +406,7 @@ function init() {
             acum += productoGoJs.price * producto.Cantidad;
 
         });
-        jQuery("#lblMensaje").text("Su monto parcial es $" + acum.toFixed(2));
+        jQuery("#lblMensaje").text("El sub-total es de $" + acum.toFixed(2));
         jQuery("#lblMensaje").css("color", "green")
     });
 }
