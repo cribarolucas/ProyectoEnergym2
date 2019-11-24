@@ -17,7 +17,7 @@
         }
     </style>
     <script src="../../Scripts/GoJS/go-debug.js"></script>
-    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=5"></script>
+    <script src="../../Scripts/Propios/Diseñar_Espacio.js?Version=2"></script>
     
 
     <div id="sample">
@@ -25,19 +25,23 @@
             <div id="accordion" class="col-sm-4 col-lg-4">
                 <h4><asp:Label ID="L_PRODUC" runat="server"></asp:Label></h4>
                 <div>
-                    <div id="myPaletteProducts" style="width: 140px; height: 360px"></div>
+                    <div id="myPaletteProducts" style="width: 140px; height: 280px"></div>
                 </div>
                 <h4><asp:Label ID="L_ESP_OCUP" runat="server"></asp:Label></h4>
                 <div>
-                    <div id="myPaletteOS" style="width: 140px; height: 360px"></div>
+                    <div id="myPaletteOS" style="width: 140px; height: 280px"></div>
                 </div>
                 <div id="myProductInfo"></div>                
             </div>
             <div class="col-sm-8 col-lg-8">
                 <div id="myDiagramDiv" style="border: solid 1px black; height: 550px; width: 750px "></div>
+            <br/>
+                <br/>
             </div>
             <div class="col-sm-12 col-lg-12" style="text-align:center; padding-top:1rem;">
-                   <button type="button" class="btn-test btn btn-success">Calcular</button> 
+                   <button type="button" class="btn-test btn btn-success">Realizar Pedido</button> 
+                   <br />
+              
             </div>
         </div>
 
@@ -47,13 +51,19 @@
     <script>
         window.onload = init();
     </script>
- 
+     <div id="divError" class="col-sm-12 col-lg-12 text-center pt-2">
+        <asp:Label ID="lblError" ClientIDMode="Static" runat="server"></asp:Label>
+         <br/>
+         <asp:Label ID="lblMensaje" ClientIDMode="Static" runat="server"></asp:Label>
+         <br/>
+    </div>
      <div class="col-sm-12 col-lg-12 text-center">
-
+         <br/>
     <asp:Button ID="B_LIMPIAR" Text="Limpiar" CssClass="btn btn-info" runat="server"></asp:Button>
-        <asp:Button ID="B_EXPORTP" Text="Exportar" CssClass="btn btn-danger" runat="server" OnClientClick="return imprimir();"></asp:Button>
+        <asp:Button ID="B_IMPRIMIR" Text="Imprimir" CssClass="btn btn-danger" runat="server" OnClientClick="return imprimir();"></asp:Button>
+         <%--<asp:Button ID="B_EXPORTP" Text="Exportar" CssClass="btn btn-danger" runat="server" OnClientClick="return exportar();" style="display:none;"></asp:Button>--%>
     <asp:button id="B_ACEPTAR" class="btn btn-test" runat="server" OnClick="asdf_Click" OnClientClick="return calcular();" Text="Aceptar" style="display:none;"></asp:button>
-    
+    <br/>
          
          <br/>
 

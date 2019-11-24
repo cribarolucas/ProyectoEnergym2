@@ -280,7 +280,6 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
-    <Content Include="WebServices\Maquinas.asmx" />
     <None Include="Scripts\JQuery\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\JQuery\chosen.jquery.js" />
     <Content Include="Scripts\JQuery\jquery-ui-1.12.1.js" />
@@ -567,10 +566,6 @@
     <Compile Include="Sites\Sistema\Usuarios.aspx.vb">
       <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="WebServices\Maquinas.asmx.vb">
-      <DependentUpon>Maquinas.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

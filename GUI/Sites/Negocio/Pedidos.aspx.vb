@@ -211,6 +211,9 @@ Public Class Pedidos
         Dim BE_EstadoPedido As BE.BE_Estado = New BE.BE_Estado
         BE_EstadoPedido.ID = 2
         Me.ActualizarEstadoPedido(BE_EstadoPedido)
+        B_EXPORTP.Visible = False
+        B_EXPORTE.Visible = False
+
     End Sub
     Private Sub ActualizarEstadoPedido(ByVal estado As BE.BE_Estado)
         Dim BE_Pedido As BE.BE_Pedido = New BE.BE_Pedido
@@ -247,6 +250,8 @@ Public Class Pedidos
         Dim BE_EstadoPedido As BE.BE_Estado = New BE.BE_Estado
         BE_EstadoPedido.ID = 3
         Me.ActualizarEstadoPedido(BE_EstadoPedido)
+        B_EXPORTP.Visible = False
+        B_EXPORTE.Visible = False
     End Sub
 
     Protected Sub gvPedidos_RowDataBound(sender As Object, e As GridViewRowEventArgs)

@@ -41,6 +41,24 @@ Partial Public Class Diseñar_Espacio
     Protected WithEvents L_ESP_OCUP As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Control lblError.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control lblMensaje.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblMensaje As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control B_LIMPIAR.
     '''</summary>
     '''<remarks>
@@ -50,13 +68,13 @@ Partial Public Class Diseñar_Espacio
     Protected WithEvents B_LIMPIAR As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control B_EXPORTP.
+    '''Control B_IMPRIMIR.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents B_EXPORTP As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents B_IMPRIMIR As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control B_ACEPTAR.

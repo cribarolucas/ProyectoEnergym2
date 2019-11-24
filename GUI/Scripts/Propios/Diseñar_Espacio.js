@@ -23,6 +23,17 @@ function imprimir() {
     return false;
 
 }
+
+//function exportar() {
+//    myDiagram.makeImage({
+//        scale: 1,
+//        background: "AntiqueWhite",
+//        type: "image/jpeg"
+       
+//    });
+//    return false;
+//}
+
 function init() {
     var $ = go.GraphObject.make;
     myDiagram =
@@ -66,6 +77,8 @@ function init() {
             },
             mouseDrop: function (e, node) {  // no permitir dejar caer nada sobre un "elemento"
                 node.diagram.currentTool.doCancel();
+
+
             },
             click: function (e, node) {  // no permitir dejar caer nada sobre un "elemento"
                 console.log(e, node);

@@ -8,6 +8,9 @@ Public Class Diseñar_Espacio
     Private _usuarioConectado As BE.BE_Usuario
     Private _segIdioma As Seguridad.SEG_Idioma = New Seguridad.SEG_Idioma
     Private _bllProducto As BLL.BLL_Producto = New BLL.BLL_Producto
+    Dim productosCatalogo As New List(Of BE.BE_Producto)
+
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         _usuarioConectado = Session("Usuario_Conectado")
         If Not IsPostBack Then
@@ -68,21 +71,87 @@ Public Class Diseñar_Espacio
 
     Protected Sub B_LIMPIAR_Click(sender As Object, e As EventArgs) Handles B_LIMPIAR.Click
         Response.Redirect("~/Sites/Cliente/Diseñar_Espacio.aspx")
+        lblError.Text = ""
+        lblMensaje.Text = ""
     End Sub
 
 
     Protected Sub asdf_Click(sender As Object, e As EventArgs) Handles B_ACEPTAR.Click
-        Dim Productos As List(Of BE.BE_Item) = JsonConvert.DeserializeObject(Of List(Of BE.BE_Item))(hf_producto.Value)
+        Dim items As List(Of BE.BE_Item) = JsonConvert.DeserializeObject(Of List(Of BE.BE_Item))(hf_producto.Value)
 
-        'IronPdf.AspxToPdf.RenderThisPageAsPdf()
-        Dim PdfOptions As New PdfPrintOptions
-        PdfOptions.DPI = 300
-        PdfOptions.EnableJavaScript = False
+        Dim productos As New List(Of BE.BE_Producto)
 
-        AspxToPdf.RenderThisPageAsPdf(AspxToPdf.FileBehavior.Attachment, "MyPdfFile.pdf", PdfOptions)
+        productosCatalogo = _bllProducto.ListarProductos
+        If items.Count <> 0 Then
 
+
+            For Each i As BE.BE_Item In items
+                Dim p As New BE.BE_Producto
+                p.ID = i.ID
+                p.Cantidad = i.Cantidad
+                p.Nombre = productosCatalogo.Find(Function(x) x.ID = p.ID).Nombre
+                p.Precio = productosCatalogo.Find(Function(x) x.ID = p.ID).Precio
+                p.Stock = productosCatalogo.Find(Function(x) x.ID = p.ID).Stock
+
+                productos.Add(p)
+
+            Next
+
+            Dim BLL_Stock As BLL.BLL_Stock = New BLL.BLL_Stock
+            Dim BLL_Factura As BLL.BLL_Factura = New BLL.BLL_Factura
+            Dim BLL_FacturaDetalle As BLL.BLL_FacturaDetalle = New BLL.BLL_FacturaDetalle
+            Dim pedido As BE.BE_Pedido = New BE.BE_Pedido
+
+            lblError.Text = ""
+            lblMensaje.Text = ""
+
+            For Each prod As BE.BE_Producto In productos
+                Me.AgregarDetallePedido(prod, prod.Cantidad, pedido)
+
+            Next
+            Me.RealizarPedido(pedido)
+        Else
+            lblError.Text = "Arrastre productos para realizar un pedido."
+            lblError.ForeColor = Drawing.Color.Red
+        End If
     End Sub
 
 
+    Private Sub AgregarDetallePedido(ByVal producto As BE.BE_Producto, ByVal cantidad As Integer, ByRef pedido As BE.BE_Pedido)
+        Dim BLL_Stock As BLL.BLL_Stock = New BLL.BLL_Stock
+        productosCatalogo = _bllProducto.ListarProductos
+        'Le paso el ID del stock y la cantidad actual en BD
+        Dim p As BE.BE_Producto = BLL_Stock.VerificarPorProducto(producto)
+        producto.Stock = p.Stock
+        producto.Precio = productosCatalogo.Find(Function(x) x.ID = producto.ID).Precio
+
+        Dim detalle As BE.BE_PedidoDetalle = New BE.BE_PedidoDetalle
+        detalle.Producto = producto
+        detalle.Cantidad = cantidad
+        detalle.PrecioUnitario = producto.Precio
+        detalle.PrecioSubtotal = cantidad * producto.Precio
+        pedido.DetallesPedido.Add(detalle)
+    End Sub
+
+    Private Sub RealizarPedido(ByRef pedido As BE.BE_Pedido)
+        Dim BE_Cliente As BE.BE_Cliente = New BE.BE_Cliente
+        Dim BLL_Cliente As BLL.BLL_Cliente = New BLL.BLL_Cliente
+        Dim BLL_Pedido As BLL.BLL_Pedido = New BLL.BLL_Pedido
+        Dim BLL_PedidoDetalle As BLL.BLL_PedidoDetalle = New BLL.BLL_PedidoDetalle
+        pedido.Fecha = DateTime.Now
+        BE_Cliente.ID = _usuarioConectado.ID
+        pedido.Cliente = BLL_Cliente.ObtenerDatosCliente(BE_Cliente)
+
+        If BLL_Pedido.GenerarPedido(pedido) AndAlso
+            BLL_PedidoDetalle.GenerarPedidoDetalle(pedido) Then
+            lblError.Text = _segIdioma.TraducirControl("MS_023", Session("Idioma_Actual"))
+            lblError.ForeColor = Drawing.Color.Green
+            lblMensaje.Text = "El monto total es de " & pedido.PrecioTotal
+            lblMensaje.ForeColor = Drawing.Color.Green
+        Else
+            lblError.Text = _segIdioma.TraducirControl("ME_068", Session("Idioma_Actual"))
+            lblError.ForeColor = Drawing.Color.Red
+        End If
+    End Sub
 
 End Class
