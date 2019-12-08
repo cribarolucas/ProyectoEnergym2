@@ -23,6 +23,33 @@ Partial Public Class Diseñar_Espacio
     Protected WithEvents hfLeyendasIdiomaActual As Global.System.Web.UI.WebControls.HiddenField
     
     '''<summary>
+    '''Control L_REFER.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents L_REFER As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control L_REF.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents L_REF As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control L_REF2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents L_REF2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control L_PRODUC.
     '''</summary>
     '''<remarks>

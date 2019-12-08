@@ -23,6 +23,13 @@
     <div id="sample">
         <div class="container" style="width: 100%; white-space: nowrap;">
             <div id="accordion" class="col-sm-4 col-lg-4">
+                <h4><asp:Label ID="L_REFER" runat="server"></asp:Label></h4>
+                <div id="Referencias" style="width: 350px; height: 140px; display:inline-block; text-align: center">
+                    <asp:Label ID="L_REF" runat="server" CssClass="text-justify text-info"></asp:Label>
+                    <br/>
+                    <br/>
+                    <asp:Label ID="L_REF2" runat="server" CssClass="text-justify text-info"></asp:Label>
+                    </div>
                 <h4><asp:Label ID="L_PRODUC" runat="server"></asp:Label></h4>
                 <div>
                     <div id="myPaletteProducts" style="width: 140px; height: 280px"></div>
